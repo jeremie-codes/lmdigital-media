@@ -11,36 +11,31 @@
       <div class="owl-stage">
 
         <!-- Carousel Slide 1 -->
-        <div class="owl-item position-relative"
-          style="background-image: url({{ url('images/ban.png') }}); background-color: #2E3136; background-size: cover; background-position: center;">
-          <div class="container position-relative z-index-1 h-100">
-            <div class="d-flex flex-column align-items-center justify-content-center h-100">
-              <h1 class="text-warning font-weight-extra-bold text-12 mb-3 appear-animation"
-                data-appear-animation="blurIn" data-appear-animation-delay="500"
-                data-plugin-options="{'minWindowWidth': 0}">Lumière Digitale Média</h1>
-              <h3
-                class="position-relative text-color-light text-5 line-height-5 font-weight-medium px-4 mb-2 appear-animation"
-                data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}">
-                <span class="position-absolute right-100pct top-50pct transform3dy-n50 opacity-3">
-                  <img src="img/slides/slide-title-border.png" class="w-auto appear-animation"
-                    data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="250"
-                    data-plugin-options="{'minWindowWidth': 0}" alt="" />
-                </span>
-                Média par <span class="position-relative"> excellence ! <span
-                    class="position-absolute left-50pct transform3dx-n50 top-0 mt-4"><img
-                      src="img/slides/slide-blue-line.png" class="w-auto appear-animation"
-                      data-appear-animation="fadeInLeftShorterPlus" data-appear-animation-delay="1000"
-                      data-plugin-options="{'minWindowWidth': 0}" alt="" /></span></span>
-                <span class="position-absolute left-100pct top-50pct transform3dy-n50 opacity-3">
-                  <img src="img/slides/slide-title-border.png" class="w-auto appear-animation"
-                    data-appear-animation="fadeInRightShorter" data-appear-animation-delay="250"
-                    data-plugin-options="{'minWindowWidth': 0}" alt="" />
-                </span>
-              </h3>
-              <p class="text-4 text-warning font-weight-light opacity-7 mb-0" data-plugin-animated-letters
-                data-plugin-options="{'startDelay': 1000, 'minWindowWidth': 0}">Excellentia Semper Ubique.</p>
+        <div class="owl-item position-relative overlay overlay-show overlay-op-7 lazyload"
+            data-bg-src="{{ url('images/ban.png') }}" style="background-size: cover; background-position: center;">
+            <div class="container position-relative z-index-3 h-100">
+                <div class="row justify-content-center align-items-center h-100">
+                    <div class="col-lg-6">
+                        <div class="d-flex flex-column align-items-center">
+                        <h2 class="text-warning font-weight-extra-bold text-12 mb-3 appear-animation text-center w-full" style="width: 100%; line-height: 54px;"
+                            data-appear-animation="blurIn" data-appear-animation-delay="500"
+                            data-plugin-options="{'minWindowWidth': 0}">Bienvenue sur Lumière Digitale Média, Votre Média par excéllence,</h2>
+                        <h3
+                            class="position-relative text-color-light text-5 line-height-5 font-weight-medium px-4 mb-2 appear-animation"
+                            data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}">
+                            </span>
+                            Excellentia Semper Ubique.
+                            <span class="position-absolute left-100pct top-50pct transform3dy-n50 opacity-3">
+                            <img src="img/lazy.png" data-src="img/slides/slide-title-border.png"
+                                class="w-auto appear-animation lazyload" data-appear-animation="fadeInRightShorter"
+                                data-appear-animation-delay="250" data-plugin-options="{'imgFluid': false, 'minWindowWidth': 0}"
+                                alt="" />
+                            </span>
+                        </h3>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
 
         <!-- Carousel Slide 2 -->
@@ -50,23 +45,18 @@
         </div>
 
         <!-- Carousel Slide 3 -->
-        <div class="owl-item position-relative overlay overlay-show overlay-op-8 lazyload"
+        <div class="owl-item position-relative overlay overlay-show overlay-op-7 lazyload"
           data-bg-src="{{ url('images/ban.png') }}" style="background-size: cover; background-position: center;">
           <div class="container position-relative z-index-3 h-100">
             <div class="row justify-content-center align-items-center h-100">
               <div class="col-lg-6">
                 <div class="d-flex flex-column align-items-center">
-                  <h2 class="text-warning font-weight-extra-bold text-12 mb-3 appear-animation"
-                    data-appear-animation="blurIn" data-appear-animation-delay="500"
-                    data-plugin-options="{'minWindowWidth': 0}">L'information,</h2>
+                  <h2 class="text-warning font-weight-extra-bold text-12 mb-3 appear-animation text-center "
+                    data-appear-animation="blurIn" data-appear-animation-delay="500" style="width: 100%; line-height: 54px;"
+                    data-plugin-options="{'minWindowWidth': 0}">Vous informer est notre dévoir et votre droit,</h2>
                   <h3
                     class="position-relative text-color-light text-5 line-height-5 font-weight-medium px-4 mb-2 appear-animation"
                     data-appear-animation="fadeInDownShorter" data-plugin-options="{'minWindowWidth': 0}">
-                    <span class="position-absolute right-100pct top-50pct transform3dy-n50 opacity-3">
-                      <img src="img/lazy.png" data-src="img/slides/slide-title-border.png"
-                        class="w-auto appear-animation lazyload" data-appear-animation="fadeInLeftShorter"
-                        data-appear-animation-delay="250" data-plugin-options="{'imgFluid': false, 'minWindowWidth': 0}"
-                        alt="" />
                     </span>
                     c'est notre devoir et votre droit.
                     <span class="position-absolute left-100pct top-50pct transform3dy-n50 opacity-3">
@@ -116,7 +106,7 @@
               {{-- @if( count($newsvideo) ) --}}
                 <div>
                   <!--<span class="thumb-info-type">Aucun vidéo récente !</span>-->
-                  <h3 class="pb-0 mb-0 text-info" style="font-size: 12px;">Aucun vidéo récente !</h3>
+                  <h3 class="pb-0 mb-0 text-primary" style="font-size: 12px;">Aucun vidéo récente !</h3>
                 </div>
               {{-- @endif --}}
 
@@ -148,7 +138,7 @@
   </section>
 
   <!-- SECTION EN Annonce -->
-  <section class="m-0 border-0 section section-parallax bg-color-primary" data-plugin-parallax
+  <section class="m-0 border-0 section section-parallax bg-tertiary" data-plugin-parallax
     data-plugin-options="{'speed': 1.1, 'parallaxHeight': '200%'}"
     data-image-src="img/demos/hotel/backgrounds/background-3.png">
     <div class="container">
@@ -181,7 +171,7 @@
                   <i class="fas fa-star text-color-dark"></i>
                 </span>
               </div>
-              <p class="mb-0  text-info">"{{ $annonce->contenu }}"</p>
+              <p class="mb-0  text-primary">"{{ $annonce->contenu }}"</p>
             </div>
 
             @endforeach
@@ -199,7 +189,7 @@
         <div class="my-3 col">
 
           <div class="text-center">
-            <h3 class="pb-0 mb-0 text-info">ACTUALITÉS</h3>
+            <h3 class="pb-0 mb-0 text-primary">ACTUALITÉS</h3>
             <div class="my-3 divider divider-small divider-small-center" style="border-color: #1279be">
               <hr class="mt-2">
             </div>
@@ -207,7 +197,7 @@
 
         @if( count($newsimage) == 0)
             <div class="text-center">
-                <h3 class="pb-0 mb-0 text-info" style="font-size: 12px;">Aucun article publié !</h3>
+                <h3 class="pb-0 mb-0 text-primary" style="font-size: 12px;">Aucun article publié !</h3>
             </div>
         @endif
 
@@ -226,10 +216,10 @@
                                 <div class="p-0 card-body" style="line-height: 1">
                                   <h4 class="pb-1 mt-3 card-title text-5 font-weight-bold">
                                     <a class="text-color-dark text-decoration-none" href="{{ url('article/news/' . $article->id) }}">{{ $article->titre }} : </a>
-                                    <a class="text-info" style="font-size: 18px;" href="{{ url('article/news/' . $article->id) }}">{{ $article->sous_titre }}</a>
+                                    <a class="text-primary" style="font-size: 18px;" href="{{ url('article/news/' . $article->id) }}">{{ $article->sous_titre }}</a>
                                   </h4>
                                   <p class="mb-2 card-text">{{ strlen($article->contenu) > 90 ? substr($article->contenu, 0, 90) . '...' : $article->contenu }}</p>
-                                  <a class="mt-2 mb-4 font-weight-bold text-uppercase text-2 text-decoration-none text-info"
+                                  <a class="mt-2 mb-4 font-weight-bold text-uppercase text-2 text-decoration-none text-primary"
                                     href="{{ url('article/news/' . $article->id) }}">Lire l'article <i class="fas fa-angle-right p-relative top-1 ms-1"></i></a>
                                 </div>
                               </div>
