@@ -41,7 +41,7 @@
         <!-- Carousel Slide 2 -->
         <div class="owl-item position-relative"
           style="background-color: #2E3136; background-size: cover; background-position: center;">
-          <video src="{{ url('images/news.mp4') }}" autoplay muted loop playsinline class="w-md-100 h-100 bg-dark"></video>
+          <video src="{{ url('images/news.mp4') }}" autoplay muted loop playsinline class="w-100 cover bg-dark"></video>
         </div>
 
         <!-- Carousel Slide 3 -->
