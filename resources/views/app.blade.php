@@ -54,10 +54,10 @@
   </head>
 
   <style>
-    .text-info {
+    .text-primary {
       color: #1279be !important;
     }
-    .bg-info {
+    .bg-primary {
       background: #1279be !important;
     }
     p {
@@ -68,6 +68,18 @@
     * {
         line-height: 1.2;
     }
+
+    .nav-link{
+        /* font-family: candara; */
+        /* font-size: 14px; */
+        color: #fff !important;
+    }
+
+    #mainNav li a:hover, #mainNav li a.active {
+        background-color: #dfb601 !important;
+        color: #fff !important;
+    }
+
   </style>
 
   <body>
@@ -75,8 +87,8 @@
     <div class="body">
 
       <header id="header" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyStartAt': 45, 'stickySetTop': '-45px', 'stickyChangeLogo': true}">
-        <div class="header-body">
-          <div class="header-container container">
+        <div class="header-body border-top-0  bg-primary">
+          <div class="header-container container bg-primary">
             <div class="header-row">
               <div class="header-column">
                 <div class="header-row">
@@ -98,12 +110,12 @@
                       </li>
                       <li
                         class="nav-item nav-item-left-border nav-item-left-border-remove nav-item-left-border-md-show">
-                        <span class="ws-nowrap"><i class="fas fa-phone"></i>+(243) 836 613 951</span>
+                        <span class="ws-nowrap text-light"><i class="fas fa-phone"></i>+(243) 836 613 951</span>
                       </li>
                     </ul>
                   </nav>
 
-                  <div class="header-nav-features">
+                  {{-- <div class="header-nav-features">
                     <div class="header-nav-feature header-nav-features-search d-inline-flex">
                       <a href="#" class="header-nav-features-toggle text-decoration-none" data-focus="headerSearch"
                         aria-label="Search">Fr</a>
@@ -112,7 +124,7 @@
                         <a class="dropdown-item" href="#EN">Anglais</a>
                       </div>
                     </div>
-                  </div>
+                  </div> --}}
 
                 </div>
 
@@ -122,27 +134,27 @@
                       <nav class="collapse">
                         <ul class="nav nav-pills" id="mainNav">
                           <li class="">
-                            <a class="<?= $page=='index' ? 'active': '' ?>" href="/">
+                            <a class="text-white <?= $page=='index' ? 'active': '' ?>" href="/">
                               Accueil
                             </a>
                           </li>
                           <li class="">
-                            <a class="<?= $page=='actualites' ? 'active': '' ?>" href="/actualites">
+                            <a class="text-white <?= $page=='actualites' ? 'active': '' ?>" href="/actualites">
                               Actualités
                             </a>
                           </li>
                           <li class="">
-                            <a class="<?= $page=='rubrique' ? 'active': '' ?> " href="/rubriques">
+                            <a class="text-white <?= $page=='rubrique' ? 'active': '' ?> " href="/rubriques">
                               Rubriques
                             </a>
                           </li>
                           <li class="">
-                            <a class="<?= $page=='services' ? 'active': '' ?> " href="/services">
+                            <a class="text-white <?= $page=='services' ? 'active': '' ?> " href="/services">
                               Service
                             </a>
                           </li>
                           <li class="">
-                            <a class="<?= $page=='opignons' ? 'active': '' ?> " href="/opinions-decouverte">
+                            <a class="text-white <?= $page=='opignons' ? 'active': '' ?> " href="/opinions-decouverte">
                               Opinion & Découverte
                             </a>
                           </li>
