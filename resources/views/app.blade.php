@@ -232,15 +232,20 @@
           </div>
         </section>
 
-        <footer id="footer" class="color bg-primary mt-0 py-5">
+        <footer id="footer" class="color mt-0 py-5">
           <div class="container">
             <div class="row align-items-center my-3">
-              <div class="col-md-4 text-center">
-                <a href="demo-hotel.">
-                  <img alt="Porto" class="img-fluid logo" style="max-width: 100px;" src="{{ url('images/_logo.png') }}">
-                </a>
-                <p class="text-warning text-medium" style="font-size: 14px;">
-                    <b>LUMIÈRE DIGITALE MEDIA SARL </b> - Société à Responsabilitée Eclairons le monde à travers l'information et la créativité !
+              <div class="col-md-4 text-justify">
+                <div class="d-flex align-items-center">
+                    <a href="demo-hotel.">
+                        <img alt="Porto" class="img-fluid logo" style="max-width: 100px;" src="{{ url('images/_logo.png') }}">
+                    </a>
+
+                    <h4>À Propos de LUMIÈRE DIGITALE MEDIA SARL</h4>
+                </div>
+                <p class="text-light opacity-7" style="font-family: Arial, Helvetica, sans-serif">
+                    <b>LUMIÈRE DIGITALE MEDIA SARL </b> est une Entreprise dynamique et innovantespécialisée dans les service médiatiques et
+                    de communication, avec pour mission d'éclairer le monde grâce à des contenus des qualités et une créativité excéptionnelle.
                 </p>
               </div>
               <div class="col-md-4 text-center">
