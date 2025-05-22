@@ -19,6 +19,8 @@ class RubriqueResource extends Resource
     protected static ?string $model = Rubrique::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar';
+        protected static ?string $navigationGroup = 'Options & services';
+
 
     public static function form(Form $form): Form
     {

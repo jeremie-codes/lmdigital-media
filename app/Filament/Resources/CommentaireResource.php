@@ -18,6 +18,7 @@ class CommentaireResource extends Resource
     protected static ?string $model = Commentaire::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
+    protected static ?string $navigationGroup = 'Options & services';
 
     public static function form(Form $form): Form
     {

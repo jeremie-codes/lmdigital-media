@@ -13,37 +13,52 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
 
 class ActualiteResource extends Resource
 {
     protected static ?string $model = Actualite::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-radio';
+    protected static ?string $navigationGroup = 'Options & services';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('region')
-                    ->options([
-                        'Afrique' => 'Afrique',
-                        'Monde' => 'Monde',
-                        'Nationale' => 'Nationale',
-                    ])
-                    ->required(),
-                Forms\Components\TextInput::make('titre')
-                    ->required(),
-                Forms\Components\TextInput::make('sous_titre')
-                    ->label('Sous titre (facultatif)'),
-                    Forms\Components\TextInput::make('video')
-                    ->label('Lien Vidéo youtube NB: Mettez soit un lien ou une photo en bas !!! '),
-                Forms\Components\Textarea::make('contenu')
-                    ->rows(5)
-                    ->required(),
-                FileUpload::make('image')
-                    ->image()
-                    ->label('Photo de l\'article (NB: Soit vous mettez le lien de youtube ci-haut ou une photo !!!)')
-                    ->directory('actualite-images')
+                Section::make('Photo ou vidéo de l\'article')
+
+                    ->schema([
+                        FileUpload::make('image')
+                            ->image()
+                            ->label('Photo de l\'article')
+                            ->directory('actualite-images'),
+                         Forms\Components\TextInput::make('video')
+                            ->label('Lien vidéo Youtube ')
+                    ]),
+                Section::make('')
+                    ->columns(1)
+                    ->schema([
+                        Forms\Components\Select::make('region')
+                            ->placeholder('Seclectionner la région')
+                            ->options([
+                                'Afrique' => 'Afrique',
+                                'Monde' => 'Monde',
+                                'Nationale' => 'Nationale',
+                            ])
+                            ->required(),
+                        Forms\Components\TextInput::make('titre')
+                            ->required(),
+                        Forms\Components\TextInput::make('sous_titre')
+                            ->label('Sous titre (facultatif)'),
+
+                    ]),
+                Section::make('')
+                    ->schema([
+                        RichEditor::make('contenu')
+                            ->required(),
+                    ]),
             ]);
     }
 

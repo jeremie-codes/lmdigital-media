@@ -19,6 +19,7 @@ class OpinionEtDecouverteResource extends Resource
     protected static ?string $model = OpinionEtDecouverte::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+    protected static ?string $navigationGroup = 'Options & services';
 
     public static function form(Form $form): Form
     {
