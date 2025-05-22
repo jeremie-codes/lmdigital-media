@@ -18,7 +18,7 @@ class ActualiteResource extends Resource
 {
     protected static ?string $model = Actualite::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-radio';
 
     public static function form(Form $form): Form
     {

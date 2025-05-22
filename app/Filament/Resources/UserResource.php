@@ -17,8 +17,8 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-        
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -68,7 +68,7 @@ class UserResource extends Resource
             //
         ];
     }
-    
+
     public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
     {
         return parent::getEloquentQuery()->orderBy('created_at', 'desc');
