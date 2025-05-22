@@ -6,6 +6,7 @@ use App\Filament\Resources\ServiceResource\Pages;
 use App\Filament\Resources\ServiceResource\RelationManagers;
 use App\Models\Service;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -24,12 +25,22 @@ class ServiceResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('titre')
-                    ->required(),
-                Forms\Components\TextInput::make('sous_titre')
-                    ->label('Sous titre (facultatif)'),
-                Forms\Components\Textarea::make('description')
-                    ->required()
+                Section::make('Photo ou vidéo de l\'article')
+                    ->columns(1)
+                    ->schema([
+                        Forms\Components\TextInput::make('titre')
+                            ->required(),
+                        Forms\Components\TextInput::make('sous_titre')
+                            ->label('Sous titre (facultatif)'),
+                    ]),
+                Section::make('description')
+                    ->columns(1)
+                    ->schema([
+                        Forms\Components\RichEditor::make('contenu')
+                            ->required()
+                            ->label('')
+                            ->required(),
+                    ]),
             ]);
     }
 

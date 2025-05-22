@@ -6,6 +6,7 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -25,17 +26,26 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->label('Nom')
-                    ->required(),
-                Forms\Components\TextInput::make('email')
-                    ->label('E-mail')
-                    ->required(),
-                Forms\Components\TextInput::make('password')
-                    ->label('Mot de passe')
-                    ->password()
-                    ->required(fn ($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord), // Rend obligatoire seulement lors de la création
-            ]);
+                Section::make('Informations de l\'utilisateur')
+                    ->columns(1)
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->label('Nom')
+                            ->required(),
+                        Forms\Components\TextInput::make('email')
+                            ->label('E-mail')
+                            ->email()
+                            ->required(),
+                       ]),
+                Section::make('Mot de passe de l\'utilisateur')
+                    ->columns(1)
+                    ->schema([
+                        Forms\Components\TextInput::make('password')
+                            ->label('Mot de passe')
+                            ->password()
+                            ->required(fn ($livewire) => $livewire instanceof \Filament\Resources\Pages\CreateRecord), // Rend obligatoire seulement lors de la création
+                    ]),
+                ]);
     }
 
     public static function table(Table $table): Table

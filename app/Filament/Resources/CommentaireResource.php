@@ -6,6 +6,7 @@ use App\Filament\Resources\CommentaireResource\Pages;
 use App\Filament\Resources\CommentaireResource\RelationManagers;
 use App\Models\Commentaire;
 use Filament\Forms;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -24,19 +25,30 @@ class CommentaireResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nom')
-                    ->label('Nom')
-                    ->required(),
-                Forms\Components\TextInput::make('email')
-                    ->label('Email')
-                    ->email()
-                    ->required(),
-                Forms\Components\Textarea::make('commentaire')
-                    ->required(),
-                Forms\Components\Select::make('actualite_id')
-                    ->label('Actualité')
-                    ->relationship('actualite', 'titre') // Relation avec le modèle Actualite
-                    ->required(),
+                Section::make('Commentaire')
+                    ->columns(1)
+                    ->schema([
+                        Forms\Components\TextInput::make('nom')
+                            ->label('Nom')
+                            ->required(),
+                        Forms\Components\TextInput::make('email')
+                            ->label('Email')
+                            ->email()
+                            ->required(),
+                        Forms\Components\Select::make('actualite_id')
+                            ->label('Actualité')
+                            ->relationship('actualite', 'titre') // Relation avec le modèle Actualite
+                            ->required(),
+
+
+                    ]),
+                Section::make('Contenu')
+                    ->columns(1)
+                    ->schema([
+                        Forms\Components\RichEditor::make('commentaire')
+                            ->label('Commentaire')
+                            ->required(),
+                    ]),
             ]);
     }
 

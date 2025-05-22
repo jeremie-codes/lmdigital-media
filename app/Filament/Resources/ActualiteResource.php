@@ -33,6 +33,7 @@ class ActualiteResource extends Resource
                         FileUpload::make('image')
                             ->image()
                             ->label('Photo de l\'article')
+                            ->label('Photo de l\'article (NB: Soit vous mettez le lien de youtube en-bas ou une photo !!!)')
                             ->directory('actualite-images'),
                          Forms\Components\TextInput::make('video')
                             ->label('Lien vidéo Youtube ')

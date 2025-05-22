@@ -13,6 +13,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
 
 class OpinionEtDecouverteResource extends Resource
 {
@@ -25,25 +27,35 @@ class OpinionEtDecouverteResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('categorie')
-                    ->options([
-                        'Opinion' => 'Opinion',
-                        'Decouverte' => 'Découverte',
-                    ])
-                    ->required(),
-                Forms\Components\TextInput::make('titre')
-                    ->required(),
-                Forms\Components\TextInput::make('sous_titre')
-                    ->label('Sous titre (facultatif)'),
-                Forms\Components\TextInput::make('video')
-                    ->label('Lien Vidéo youtube NB: Mettez soit un lien ou une photo en bas !!! '),
-                Forms\Components\Textarea::make('contenu')
-                    ->rows(5)
-                    ->required(),
-                FileUpload::make('image')
-                    ->image()
-                    ->label('Photo de l\'article (NB: Soit vous mettez le lien de youtube ci-haut ou une photo !!!)')
-                    ->directory('opignon-images')
+                Section::make('Photo ou vidéo de l\'article')
+                    ->columns(1)
+                    ->schema([
+                        FileUpload::make('image')
+                            ->image()
+                            ->label('Photo de l\'article (NB: Soit vous mettez le lien de youtube en-bas ou une photo !!!)')
+                            ->directory('opignon-images'),
+                        Forms\Components\TextInput::make('video')
+                            ->label('Lien vidéo Youtube '),
+                    ]),
+                Section::make('')
+                    ->columns(1)
+                    ->schema([
+                        Forms\Components\Select::make('categorie')
+                            ->options([
+                                'Opinion' => 'Opinion',
+                                'Decouverte' => 'Découverte',
+                            ])
+                            ->required(),
+                        Forms\Components\TextInput::make('titre')
+                            ->required(),
+                        Forms\Components\TextInput::make('sous_titre')
+                            ->label('Sous titre (facultatif)'),
+                    ]),
+                Section::make('')
+                ->schema([
+                    RichEditor::make('contenu')
+                        ->required(),
+                ]),
             ]);
     }
 
