@@ -19,4 +19,22 @@ class OpinionDecouverteController extends Controller
         return view('politiques');
     }
 
+    public function sport()
+    {
+
+        // $opinionDecouvertes = OpinionEtDecouverte::all();
+        // $categorie = OpinionEtDecouverte::select('categorie')->distinct()->get();
+
+        return view('sports');
+    }
+
+    public function economie()
+    {
+
+        // $opinionDecouvertes = OpinionEtDecouverte::all();
+        // $categorie = OpinionEtDecouverte::select('categorie')->distinct()->get();
+
+        return view('economies');
+    }
+
 }
