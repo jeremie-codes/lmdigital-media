@@ -9,13 +9,13 @@ use Barryvdh\DomPDF\Facade as PDF;
 
 class ServiceController extends Controller
 {
-    
+
     public function index()
     {
 
-        $services = Service::all();
+        // $services = Service::all();
 
-        return view('services', compact('services'));
+        return view('services');
     }
 
 }

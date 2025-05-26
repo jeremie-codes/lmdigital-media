@@ -97,7 +97,7 @@
                                 <p class="text-sm text-gray-700 text-justify sm:pt-0 pt-4">
                                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos deleniti quo suscipit cupiditate maiores quidem eius ea laborum aspernatur officiis rerum deserunt amet porro, sapiente facilis natus doloremque, impedit ipsum.
                                 </p>
-                                <a href="#" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block">Voir Plus</a>
+                                <a href="{{ route('actualites.show', 1) }}" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block">Voir Plus</a>
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                         <div class="bg-white shadow">
                             <div class="relative flex items-center justify-center">
                                 <img src="{{ asset('images/img.jpeg') }}" class="w-full">
-                                <a href="#" class="absolute">
+                                <a href="{{ route('actualites.show', 1) }}" class="absolute">
                                     <i class="fa fa-play-circle text-gray-300 text-3xl" aria-hidden="true"></i>
                                 </a>
                             </div>

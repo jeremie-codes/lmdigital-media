@@ -9,25 +9,25 @@ use Barryvdh\DomPDF\Facade as PDF;
 
 class RubriqueController extends Controller
 {
-    
+
     public function index()
     {
 
-        $rubriques = Rubrique::all();
-        $categorie = Rubrique::select('categorie')->distinct()->get();
-        
+        // $rubriques = Rubrique::all();
+        // $categorie = Rubrique::select('categorie')->distinct()->get();
+
         // dd($region);
 
-        return view('rubriques', compact('rubriques', 'categorie'));
+        return view('rubriques');
     }
-    
+
     public function show($id)
     {
 
-        $user = Rubrique::findOrFail($id);
-        return new UserResource($user);
+        // $user = Rubrique::findOrFail($id);
+        // return new UserResource($user);
 
-        return view('index', compact('actualites', 'opignons', 'rubriques'));
+        return view('index');
     }
 
 }

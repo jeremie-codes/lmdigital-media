@@ -8,7 +8,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    
+
     public function index()
     {
         // $users = User::all(); // Récupère tous les utilisateurs
@@ -21,11 +21,11 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return new UserResource($user);
     }
-    
+
         public function sync(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-    
+
         if ($user) {
             // Authentification réussie
             return response()->json([
@@ -40,5 +40,5 @@ class UserController extends Controller
             ], 401);
         }
     }
-    
+
 }
