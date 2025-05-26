@@ -37,8 +37,8 @@ class ArticleController extends Controller
     public function show($id)
     {
 
-        $article = Actualite::with('commentaires')->findOrFail($id);
-        dd($article);
+        // $article = Actualite::with('commentaires')->findOrFail($id);
+        dd("ssss");
 
         return view('shownews', compact('article'));
     }
