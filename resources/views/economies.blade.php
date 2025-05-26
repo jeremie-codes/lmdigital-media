@@ -9,7 +9,7 @@
 
         <!-- Must Watch Section -->
         <section>
-            <h2 class="text-xl font-bold mb-4">SUIVEZ NOS PROGRAMMES</h2>
+            <h2 class="text-xl font-bold mb-4">EN EXCLUSIVITÉ (PROGRAMME ECONOMIE)</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                <div class="md:col-span-2">
                     @if (!empty($video->youtube_url))
