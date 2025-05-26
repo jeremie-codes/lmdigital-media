@@ -12,6 +12,8 @@ Route::get('/news', [ActualiteController::class, 'index'])->name('articles.index
 Route::get('/rubriques', [RubriqueController::class, 'index'])->name('rubrique');
 Route::get('/services', [ServiceController::class, 'index'])->name('service');
 Route::get('/politiques', [OpinionDecouverteController::class, 'index'])->name('sports');
+Route::get('/sports', [OpinionDecouverteController::class, 'index'])->name('sports');
+Route::get('/economies', [OpinionDecouverteController::class, 'index'])->name('sports');
 Route::get('/newsletter/subscribe', [OpinionDecouverteController::class, 'index'])->name('newsletter.subscribe');
 Route::get('/article/news/{id}', [ArticleController::class, 'show'])->name('actualites.show');
 Route::post('/actualites/{id}/commentaires', [ActualiteController::class, 'store'])->name('commentaires.store');
