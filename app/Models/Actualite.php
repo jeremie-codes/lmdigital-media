@@ -59,6 +59,6 @@ class Actualite extends Model
     // Relation avec Commentaire
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'article_id');
     }
 }
