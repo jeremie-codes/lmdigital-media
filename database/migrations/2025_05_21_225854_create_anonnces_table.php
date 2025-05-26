@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('annonces', function (Blueprint $table) {
             $table->id();
-            $table->string('categorie');
-            $table->string('sous_titre');
+            $table->string('type');
+            $table->string('image')->nullable();
             $table->text('contenu')->nullable();
             $table->timestamps();
         });

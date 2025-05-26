@@ -9,18 +9,56 @@ class Actualite extends Model
 {
     use HasFactory;
 
+    protected $table = 'articles';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
-        'region',
-        'titre',
-        'sous_titre',
-        'contenu',
-        'video',
-        'image',
+        'title',
+        'slug',
+        'content',
+        'category_id',
+        'author_id',
+        'status',
+        'is_published',
+        'scheduled_at',
+        'views_count',
+        'youtube_url',
+        'file_path',
+        'cover_image',
     ];
-    
-    // Relation avec Commentaire
-    public function commentaires()
+
+    public static function boot() {
+        parent::boot();
+
+        // Automatically set the author_id to the authenticated user
+        static::creating(function ($model) {
+            $model->type = 'news';
+        });
+    }
+
+    /**
+     * Get the author of the article.
+     */
+    public function author()
     {
-        return $this->hasMany(Commentaire::class);
+        return $this->belongsTo(User::class, 'author_id');
+    }
+
+    /**
+     * Get the category of the article.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    // Relation avec Commentaire
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

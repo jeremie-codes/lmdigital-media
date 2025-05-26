@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CommentaireResource\Pages;
 use App\Filament\Resources\CommentaireResource\RelationManagers;
-use App\Models\Commentaire;
+use App\Models\Comment;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
@@ -16,28 +16,30 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class CommentaireResource extends Resource
 {
-    protected static ?string $model = Commentaire::class;
+    protected static ?string $model = Comment::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
-    protected static ?string $navigationGroup = 'Options & services';
+    protected static ?string $navigationGroup = 'Autres options';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Section::make('Commentaire')
+                Section::make('content')
                     ->columns(1)
                     ->schema([
-                        Forms\Components\TextInput::make('nom')
+                        Forms\Components\TextInput::make('guest_name')
                             ->label('Nom')
                             ->required(),
-                        Forms\Components\TextInput::make('email')
+                        Forms\Components\TextInput::make('guest_email')
                             ->label('Email')
                             ->email()
                             ->required(),
                         Forms\Components\Select::make('actualite_id')
-                            ->label('Actualité')
-                            ->relationship('actualite', 'titre') // Relation avec le modèle Actualite
+                            ->label('Article')
+                            ->placeholder('Sélectionner un article')
+                            ->relationship('actualite', 'title') // Relation avec le modèle Actualite
                             ->required(),
 
 
@@ -45,7 +47,7 @@ class CommentaireResource extends Resource
                 Section::make('Contenu')
                     ->columns(1)
                     ->schema([
-                        Forms\Components\RichEditor::make('commentaire')
+                        Forms\Components\RichEditor::make('content')
                             ->label('Commentaire')
                             ->required(),
                     ]),
@@ -56,13 +58,13 @@ class CommentaireResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nom')->label('Nom'),
-                Tables\Columns\TextColumn::make('email')->label('Email'),
-                Tables\Columns\TextColumn::make('commentaire')->label('Commentaire')->limit(50),
-                Tables\Columns\TextColumn::make('actualite.titre')->limit(30)
+                Tables\Columns\TextColumn::make('guest_name')->label('Nom'),
+                Tables\Columns\TextColumn::make('guest_email')->label('Email'),
+                Tables\Columns\TextColumn::make('actualite.title')->limit(20)
                     ->label('Article')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('content')->label('Commentaire')->limit(30),
                 Tables\Columns\TextColumn::make('created_at')->label('Date de création')->dateTime(),
             ])
             ->filters([
@@ -70,6 +72,7 @@ class CommentaireResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

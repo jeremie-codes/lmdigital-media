@@ -20,26 +20,30 @@ class AnnonceResource extends Resource
     protected static ?string $model = Annonce::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-megaphone';
-    protected static ?string $navigationGroup = 'Options & services';
+    protected static ?string $navigationGroup = 'Content';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\Section::make('Image')
+                    ->schema([
+                        Forms\Components\FileUpload::make('image')
+                            ->label('Image de l\'annonce (facultatif)')
+                            ->image()
+                            ->maxSize(2048) // 2MB
+                            ->directory('covers'),
+                    ]),
                 Section::make('Titre de l\'annonce')
                     ->columns(1)
                     ->schema([
-                        Forms\Components\Select::make('categorie')
+                        Forms\Components\Select::make('type')
                             ->options([
                                     'Publicité' => 'Publicité',
                                     'Communiqué' => 'Communiqué',
-                                    'Avis de recherche' => 'Avis de recherche',
                                     'Autres' => 'Autres',
                                 ])
-                            ->label('Titre')
-                            ->required(),
-                        Forms\Components\TextInput::make('sous_titre')
-                            ->label('Sous titre (facultatif)'),
                     ]),
                 Section::make('Contenu de l\'annonce')
                     ->columns(1)
@@ -56,12 +60,15 @@ class AnnonceResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('categorie')
+                Tables\Columns\ImageColumn::make('cover_image')
+                    ->label('Image')
+                    ->getStateUsing(fn (Annonce $record) => asset('storage/' . $record->image)),
+                Tables\Columns\TextColumn::make('type')
                     ->sortable()
-                    ->searchable()
-                    ->label('Titre'),
-                Tables\Columns\TextColumn::make('sous_titre'),
-                Tables\Columns\TextColumn::make('contenu'),
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('contenu')->limit(30),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->date(),
             ])
             ->filters([
                 //
