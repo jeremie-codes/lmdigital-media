@@ -38,9 +38,9 @@ class ArticleController extends Controller
     {
 
         // $article = Actualite::with('commentaires')->findOrFail($id);
-        dd("ssss");
+        // dd("ssss");
 
-        return view('shownews', compact('article'));
+        return view('shownews');
     }
 
     public function store(Request $request, $actualiteId)
