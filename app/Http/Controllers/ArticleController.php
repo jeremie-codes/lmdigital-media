@@ -23,8 +23,8 @@ class ArticleController extends Controller
         $latestArticles = Article::all();
         $categories = Category::all();
         $footerCategories = Category::all();
-        $opignons = OpinionEtDecouverte::all()->groupBy('categorie');
-        $rubriques = Rubrique::all()->groupBy('categorie');
+        // $opignons = OpinionEtDecouverte::all()->groupBy('categorie');
+        // $rubriques = Rubrique::all()->groupBy('categorie');
         $act = Actualite::all();
         $annonces = Annonce::all();
 
