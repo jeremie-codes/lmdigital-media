@@ -103,18 +103,19 @@
                         </div>
 
                     </div>
+
+                    <div class="w-full pt-4 text-right">
+                        <a href="#" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block uppercase">
+                            Voir plus d'actualité
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 @empty
-                    <h3 class="text-sm font-bold text-blue-600 uppercase">
+                    <div class="text-blue-600 text-sm hover:underline mt-2 inline-block">
                         Aucune actualité disponible pour le moment.
-                    </h3>
+                    </div>
                 @endforelse
 
-                <div class="w-full pt-4 text-right">
-                    <a href="#" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block uppercase">
-                        Voir plus d'actualité
-                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                </div>
             </div>
 
             {{-- VIDEOS SHOWS --}}
@@ -143,19 +144,21 @@
                             </div>
                         </div>
                     @empty
-                        <h3 class="text-sm font-bold text-blue-600 uppercase">
-                            Aucune actualité disponible pour le moment.
-                        </h3>
+                         <div class="text-blue-600 text-sm hover:underline mt-2 inline-block">
+                            Aucune vidéo disponible pour le moment.
+                        </div>
                     @endforelse
 
                 </div>
 
-                 <div class="w-full pt-4 text-right">
-                    <a href="#" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block uppercase">
-                        Voir plus des vidéos
-                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                </div>
+                @if ($lastvideos->count() > 6)
+                    <div class="w-full pt-4 text-right">
+                       <a href="#" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block uppercase">
+                           Voir plus des vidéos
+                           <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                       </a>
+                   </div>
+                @endif
             </div>
         </div>
 
