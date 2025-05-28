@@ -104,12 +104,14 @@
 
                     </div>
 
-                    <div class="w-full pt-4 text-right">
-                        <a href="#" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block uppercase">
-                            Voir plus d'actualité
-                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-                    </div>
+                    @if ($lastnews->count() > 2)
+                        <div class="w-full pt-4 text-right">
+                            <a href="#" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block uppercase">
+                                Voir plus d'actualité
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    @endif
                 @empty
                     <div class="text-blue-600 text-sm hover:underline mt-2 inline-block">
                         Aucune actualité disponible pour le moment.
