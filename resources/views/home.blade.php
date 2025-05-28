@@ -177,29 +177,17 @@
                     <!-- Carousel wrapper -->
                     <div class="relative h-screen overflow-hidden rounded-lg">
                         <!-- Item 1 -->
-                        <div class="hiddn duration-700 ease-in-out" data-carousel-item>
-                            <img src="{{ asset('images/pub-1.jpg') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <!-- Item 2 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="{{ asset('images/pub-2.jpg') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-                        <!-- Item 2 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="{{ asset('images/pub-3.jpg') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                        </div>
-
-                        <div class="hidden duration-700 ease-in-out h-full flex items-center" data-carousel-item>
-                            <P>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat minus debitis soluta illum unde reprehenderit voluptatibus sunt. Vero dolorem a unde ab eum ad culpa dolore qui exercitationem facere. Ratione.
-                            </P>
-                        </div>
+                        @foreach ($annonces as $annonce)
+                            <div class="hiddn duration-700 ease-in-out" data-carousel-item>
+                                <img src="{{ asset('storage/' . $annonce->image) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                            </div>
+                        @endforeach
                     </div>
                     <!-- Slider indicators -->
                     <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                        <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                        @foreach ($annonces as $annonce)
+                            <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="{{ $loop->iteration }}"></button>
+                        @endforeach
                     </div>
                     <!-- Slider controls -->
                     <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
