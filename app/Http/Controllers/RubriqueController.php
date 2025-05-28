@@ -3,31 +3,73 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Rubrique;
+use App\Models\Actualite;
+use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class RubriqueController extends Controller
 {
 
-    public function index()
+    public function index($id = null)
     {
 
-        // $rubriques = Rubrique::all();
-        // $categorie = Rubrique::select('categorie')->distinct()->get();
+        $categoryId = Category::where('name', 'politique')->value('id');
+        $article = null;
+        $articleOthers = Article::where('id', '!=', $id)
+            ->where('category_id', $categoryId)
+            ->where('type', 'video')
+            ->paginate(10);
 
-        // dd($region);
+        if($id) {
+            $article = Article::where('category_id', $categoryId)
+                ->where('type', 'video')
+                ->where('id', $id)->first();
+        }
 
-        return view('rubriques');
+        return view('politiques', compact('article', 'articleOthers'));
+
     }
 
-    public function show($id)
+    public function sport($id = null)
     {
 
-        // $user = Rubrique::findOrFail($id);
-        // return new UserResource($user);
+        $categoryId = Category::where('name', 'sport')->value('id');
+        $article = null;
+        $articleOthers = Article::where('id', '!=', $id)
+            ->where('category_id', $categoryId)
+            ->where('type', 'video')
+            ->paginate(10);
 
-        return view('index');
+        if($id) {
+            $article = Article::where('category_id', $categoryId)
+                ->where('type', 'video')
+                ->where('id', $id)->first();
+        }
+
+        return view('sports', compact('article', 'articleOthers'));
+
+    }
+
+    public function economie($id = null)
+    {
+
+        $categoryId = Category::where('name', 'economie')->value('id');
+        $article = null;
+        $articleOthers = Article::where('id', '!=', $id)
+            ->where('category_id', $categoryId)
+            ->where('type', 'video')
+            ->paginate(10);
+
+        if($id) {
+            $article = Article::where('category_id', $categoryId)
+                ->where('type', 'video')
+                ->where('id', $id)->first();
+        }
+
+        return view('economies', compact('article', 'articleOthers'));
+
     }
 
 }

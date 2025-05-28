@@ -6,12 +6,12 @@
 
         <!-- Must Watch Section -->
         <section>
-            <h2 class="text-xl font-bold mb-4">{{ $article->titre }}</h2>
+            <h2 class="text-xl font-bold mb-4">{{ $article->title }}</h2>
             <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
                <div class="md:col-span-2">
 
                     <img
-                        src="{{ asset('images/ban.png') }}"
+                        src="{{ asset('storage/' . $article->cover_image) }}"
                         alt="Couverture de la vidéo"
                         class="w-full h-92 object-cover">
 
@@ -53,7 +53,7 @@
 
         <!-- Section Commentaires -->
         <section class="mt-8">
-            <h3 class="text-xl font-semibold mb-4">Commentaires</h3>
+            <h3 class="text-xl font-semibold mb-4">Commentaires ({{ $article->comments->count() }})</h3>
 
             <!-- Formulaire de commentaire -->
             <form action="{{ route('commentaires.store', $article->id ) }}" method="POST" class="mb-6">
@@ -61,7 +61,11 @@
                 {{-- <input type="hidden" name="video_id" value="{{ $video->id }}"> --}}
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-1" for="author">Nom</label>
-                    <input type="text" name="author" id="author" required
+                    <input type="text" name="guest_name" id="author" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="author">Email</label>
+                    <input type="text" name="guest_email" id="gemail" required
                         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="mb-4">
@@ -70,25 +74,20 @@
                             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                 </div>
                 <button type="submit"
-                        class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition">
+                        class="bg-yellow-500 text-white px-4 py-2 mb-3 rounded hover:bg-yellow-600 transition">
                     Publier
                 </button>
             </form>
 
             <!-- Liste des commentaires -->
             <div class="space-y-4">
-                @forelse ([
-                    ['author' => 'Jean Dupont', 'content' => 'Super vidéo, merci pour le partage !', 'created_at' => now()->subMinutes(10)],
-                    ['author' => 'Marie Curie', 'content' => 'Très intéressant, j’ai appris beaucoup de choses.', 'created_at' => now()->subHours(2)],
-                    ['author' => 'Albert Einstein', 'content' => 'J’adore ce genre de contenu, continuez comme ça !', 'created_at' => now()->subDays(1)],
-                    ['author' => 'Jean Dupont', 'content' => 'Super vidéo, merci pour le partage !', 'created_at' => now()->subMinutes(10)],
-                    ['author' => 'Marie Curie', 'content' => 'Très intéressant, j’ai appris beaucoup de choses.', 'created_at' => now()->subHours(2)],
-                    ['author' => 'Albert Einstein', 'content' => 'J’adore ce genre de contenu, continuez comme ça !', 'created_at' => now()->subDays(1)],
-                ] as $comment)
+                @forelse ($article->comments as $comment)
                     <div class="bg-white p-4 rounded-md shadow-sm border">
-                        <p class="text-sm font-semibold text-gray-800">{{ $comment['author'] }}</p>
-                        <p class="text-gray-600 text-sm mt-1">{{ $comment['content'] }}</p>
-                        <p class="text-xs text-gray-400 mt-1">{{ $comment['created_at']->diffForHumans() }}</p>
+                        <p class="text-sm font-semibold text-gray-800">{{ $comment->guest_name }}</p>
+                        <div class="text-gray-600 text-sm mt-1">
+                            {!! $comment->content !!}
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">{{ $comment->created_at->diffForHumans() }}</p>
                     </div>
                 @empty
                     <p class="text-gray-500">Aucun commentaire pour l’instant.</p>

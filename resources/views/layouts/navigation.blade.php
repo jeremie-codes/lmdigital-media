@@ -62,6 +62,9 @@
                     <a href="{{ url('/about') }}" class="block text-sm font-semibold py-2 px-3 lg:p-0 text-gray-900 rounded-sm hover:lg:border-b-4 hover:bg-blue-100 hover:text-slate-700 lg:hover:bg-transparent lg:hover:text-gray-300 text-white">À PROPOS</a>
                 </li>
                 <li>
+                    <a href="{{ url('/news') }}" class="block text-sm font-semibold py-2 px-3 lg:p-0 text-gray-900 rounded-sm hover:lg:border-b-4 hover:bg-blue-100 hover:text-slate-700 lg:hover:bg-transparent lg:hover:text-gray-300 text-white">ACTUALITÉS</a>
+                </li>
+                <li>
                     <a href="{{ url('/politiques') }}" class="block text-sm font-semibold py-2 px-3 lg:p-0 text-gray-900 rounded-sm hover:lg:border-b-4 hover:bg-blue-100 hover:text-slate-700 lg:hover:bg-transparent lg:hover:text-gray-300 text-white">POLITIQUES</a>
                 </li>
                 <li>
@@ -69,9 +72,6 @@
                 </li>
                 <li>
                     <a href="{{ url('/economies') }}" class="block text-sm font-semibold py-2 px-3 lg:p-0 text-gray-900 rounded-sm hover:lg:border-b-4 hover:bg-blue-100 hover:text-slate-700 lg:hover:bg-transparent lg:hover:text-gray-300 text-white">ÉCONOMIES</a>
-                </li>
-                <li>
-                    <a href="{{ url('/news') }}" class="block text-sm font-semibold py-2 px-3 lg:p-0 text-gray-900 rounded-sm hover:lg:border-b-4 hover:bg-blue-100 hover:text-slate-700 lg:hover:bg-transparent lg:hover:text-gray-300 text-white">ACTUALITÉS</a>
                 </li>
             </ul>
         </div>

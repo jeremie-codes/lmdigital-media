@@ -9,36 +9,45 @@ use App\Models\Rubrique;
 use App\Models\Annonce;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Commentaire;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Config;
 
 class ArticleController extends Controller
 {
 
     public function index()
     {
-
-        $featuredArticles = Article::all();
-        $latestArticles = Article::all();
-        $categories = Category::all();
-        $footerCategories = Category::all();
-        // $opignons = OpinionEtDecouverte::all()->groupBy('categorie');
-        // $rubriques = Rubrique::all()->groupBy('categorie');
-        $act = Actualite::all();
+        $lastvideos = Article::where('type', 'video')->with('comments')->limit(6)->get();
+        $lastnews = Article::where('type', 'news')->limit(2)->get();
         $annonces = Annonce::all();
+        $footerCategories = Category::all();
+        $configs = Config::all();
 
-        // dd($newsvideo);
+        return view('home', compact('lastnews', 'lastvideos', 'footerCategories', 'annonces', 'configs'));
+    }
 
-        // return view('index', compact('newsimage', 'newsvideo', 'opignons', 'rubriques', 'annonces'));
-        return view('home', compact('featuredArticles', 'latestArticles', 'footerCategories', 'categories', 'annonces'));
+    public function news($cat = null)
+    {
+
+        $news = Article::where('type', 'news')->get();
+        $categories = Category::all();
+
+        if($cat) {
+            $catId = Category::where('name', $cat)->value('id');
+            $categories = Category::where('name', '!=', $cat)->get();
+            $news = Article::where('type', 'news')->where('category_id', $catId)->get();
+        }
+
+        return view('news', compact('news', 'categories'));
     }
 
     public function show($id)
     {
 
         $article = Actualite::with('comments')->findOrFail($id);
-        // dd($article);
 
         return view('shownews', compact('article'));
     }
@@ -46,18 +55,18 @@ class ArticleController extends Controller
     public function store(Request $request, $actualiteId)
     {
         $request->validate([
-            'nom' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'commentaire' => 'required|string|max:500',
+            'guest_name' => 'required|string|max:255',
+            'guest_email' => 'required|email|max:255',
+            'content' => 'required|string|max:500',
         ]);
 
         $actualite = Actualite::findOrFail($actualiteId);
 
         // Ajouter un commentaire à l'actualité
-        $actualite->commentaires()->create([
+        $actualite->comments()->create([
             'nom' => $request->input('nom'),
             'email' => $request->input('email'),
-            'commentaire' => $request->input('commentaire'),
+            'content' => $request->input('content'),
         ]);
 
         return redirect()->route('actualites.show', $actualiteId)->with('success', 'Commentaire ajouté avec succès.');
