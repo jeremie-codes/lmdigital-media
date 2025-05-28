@@ -167,16 +167,18 @@
         {{-- Side boxes --}}
         <div class="space-y-4 md:mt-0 mt-4 side">
             <div class="border-b pb-6 border-gray-300">
-                <div class="bg-white shadow mb-4">
-                    <img src="{{ asset('images/img.jpeg') }}" class="w-full">
-                    <div class="bg-blue-600 text-white px-3 py-2 text-xl font-bold">20:05 <span class="text-sm ml-2">MONDAY - THURSDAY</span></div>
-                    <div class="p-3 font-semibold text-sm uppercase">Adipisicing elit, sed do eiusmod tempor incididunt</div>
-                </div>
-                <div class="bg-white shadow">
-                    <img src="{{ asset('images/img.jpeg') }}" class="w-full">
-                    <div class="bg-blue-600 text-white px-3 py-2 text-xl font-bold">13:55 <span class="text-sm ml-2">MONDAY - THURSDAY</span></div>
-                    <div class="p-3 font-semibold text-sm uppercase">Lorem ipsum dolor sit amet consectetuer</div>
-                </div>
+                @forelse($lastnews as $news)
+                    <div class="bg-white shadow mb-4">
+                        <img src="{{ asset('images/img.jpeg') }}" class="w-full">
+                        <div class="bg-blue-600 text-white px-3 py-2 text-xl font-bold">{{ \Carbon\Carbon::parse($news->scheduled_at)->format('H:i') }}
+                             <span class="text-sm ml-2">{{ \Carbon\Carbon::parse($news->scheduled_at)->translatedFormat(', d F') }}</span></div>
+                        <div class="p-3 font-semibold text-sm uppercase">{{ $news->title }}</div>
+                    </div>
+                @empty
+                    <div class="text-blue-600 text-sm py-4 text-center">
+                       <span> Aucune actualité disponible pour le moment.</span>
+                    </div>
+                @endforelse
             </div>
 
             {{-- ANNONCES & PUBS --}}
