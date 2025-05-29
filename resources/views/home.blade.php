@@ -32,26 +32,26 @@
                     <div class="hidden duration-700 ease-in-out pt-0" data-carousel-item>
                         <img src="{{ asset('images/ban.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover" alt="...">
                         <div class="absolute bottom-0 left-0 w-full flex items-center justify-between">
-                            <div class="bg-blue-600 text-white px-4 py-2 text-2xl font-bold">
+                            {{-- <div class="bg-blue-600 text-white px-4 py-2 text-2xl font-bold">
                                 19:05 <span class="text-sm ml-2">MONDAY - THURSDAY</span>
                             </div>
 
                             <div class="lg:block hidden bg-black bg-opacity-20 text-white px-4 py-2 text-lg font-semibold">
                                 AUTE IRURE DOLOR IN REPREHENDERIT
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <!-- Item 2 -->
                     <div class="hidden duration-700 ease-in-out pt-0" data-carousel-item>
                         <img src="{{ asset('images/ban.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover" alt="...">
                         <div class="absolute bottom-0 left-0 w-full flex items-center justify-between">
-                            <div class="bg-blue-600 text-white px-4 py-2 text-2xl font-bold">
+                            {{-- <div class="bg-blue-600 text-white px-4 py-2 text-2xl font-bold">
                                 19:05 <span class="text-sm ml-2">MONDAY - THURSDAY</span>
                             </div>
 
                             <div class="lg:block hidden bg-black bg-opacity-20 text-white px-4 py-2 text-lg font-semibold">
                                 AUTE IRURE DOLOR IN REPREHENDERIT
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <!-- Item 2 -->
@@ -90,11 +90,11 @@
                             </div>
                             <div class="w-full sm:flex justify-end">
                                 <div class="w-full md:w-100 sm:h-38 overflow-hidden border">
-                                    <img src="{{ asset('sotrage/' . $news->cover_image ) }}" alt="Blog image" class="w-full h-full object-cover">
+                                    <img src="{{ asset('storage/' . $news->cover_image ) }}" alt="Blog image" class="w-full h-full object-cover">
                                 </div>
                                 <div class="px-3 w-full">
-                                    <div class="text-sm text-gray-700 text-justify sm:pt-0 pt-4">
-                                        {!! Illuminate\Support\Str::limit(strip_tags($news->content), 255) !!}
+                                    <div class="tex text-gray-700 text-justify sm:pt-0 pt-4">
+                                        {!! Illuminate\Support\Str::limit(strip_tags($news->content), 300) !!}
                                     </div
                                     >
                                     <a href="{{ route('actualites.show', $news->id) }}" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block">Voir Plus</a>
@@ -127,7 +127,7 @@
                     @forelse($lastvideos as $video)
                         <div class="bg-white shadow">
                             <div class="relative flex items-center justify-center">
-                                <img src="{{ asset('sotrage/' . $video->cover_image ) }}" class="w-full">
+                                <img src="{{ asset('storage/' . $video->cover_image ) }}" class="w-full">
                                 <a href="{{ route('actualites.show', 1) }}" class="absolute">
                                     <i class="fa fa-play-circle text-red-300 text-3xl" aria-hidden="true"></i>
                                 </a>
@@ -141,8 +141,8 @@
                                     {{ $video->title }}
                                 </a>
                             </div>
-                            <div class="p-3 text-gray-500 text-sm text-justify">
-                                {!! Illuminate\Support\Str::limit(strip_tags($video->content), 100) !!}
+                            <div class="p-3 text-gray-500 text-m text-justify">
+                                {!! Illuminate\Support\Str::limit(strip_tags($video->content), 150) !!}
                             </div>
                         </div>
                     @empty
@@ -169,7 +169,7 @@
             <div class="border-b pb-6 border-gray-300">
                 @forelse($lastnews as $news)
                     <div class="bg-white shadow mb-4">
-                        <img src="{{ asset('sotrage/' . $news->cover_image ) }}" class="w-full">
+                        <img src="{{ asset('storage/' . $news->cover_image ) }}" class="w-full">
                         <div class="bg-blue-600 text-white px-3 py-2 text-xl font-bold">{{ \Carbon\Carbon::parse($news->scheduled_at)->format('H:i') }}
                              <span class="text-sm ml-2">{{ \Carbon\Carbon::parse($news->scheduled_at)->translatedFormat(', d F') }}</span></div>
                         <div class="p-3 font-semibold text-sm uppercase">{{ $news->title }}</div>
