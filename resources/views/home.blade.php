@@ -169,7 +169,7 @@
             <div class="border-b pb-6 border-gray-300">
                 @forelse($sidenews as $news)
                     <div class="bg-white shadow mb-4">
-                        <img src="{{ asset('storage/' . $news->cover_image ) }}" class="w-full">
+                        <img src="{{ asset('storage/' . $news->cover_image ) }}" class="w-full max-h-24">
                         <div class="bg-blue-600 text-white px-3 py-2 text-xl font-bold">{{ \Carbon\Carbon::parse($news->scheduled_at)->format('H:i') }}
                              <span class="text-sm ml-2">{{ \Carbon\Carbon::parse($news->scheduled_at)->translatedFormat(', d F') }}</span></div>
                         <div class="p-3 font-semibold text-sm uppercase">{{ $news->title }}</div>
