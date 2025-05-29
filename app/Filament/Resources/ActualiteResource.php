@@ -125,9 +125,6 @@ class ActualiteResource extends Resource
                 Tables\Columns\TextColumn::make('category.name')->limit(15)
                     ->sortable()
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('rubrique')->limit(15)
-                    ->sortable()
-                    ->toggleable(),
                 Tables\Columns\TextColumn::make('author.name')
                     ->label('Auteur')
                     ->sortable()

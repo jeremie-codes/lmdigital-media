@@ -157,9 +157,7 @@ class ArticleResource extends Resource
                 Tables\Columns\TextColumn::make('author.name')
                     ->sortable()
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('scheduled_at')
-                    ->label('Diffusion')
-                    ->dateTime()
+                Tables\Columns\TextColumn::make('rubrique')->limit(15)
                     ->sortable()
                     ->toggleable(),
                 Tables\Columns\BooleanColumn::make('is_published')
