@@ -218,7 +218,7 @@
                                     <a class="text-color-dark text-decoration-none" href="{{ url('article/news/' . $article->id) }}">{{ $article->titre }} : </a>
                                     <a class="text-primary" style="font-size: 18px;" href="{{ url('article/news/' . $article->id) }}">{{ $article->sous_titre }}</a>
                                   </h4>
-                                  <p class="mb-2 card-text">{{ strlen($article->contenu) > 90 ? substr($article->contenu, 0, 90) . '...' : $article->contenu }}</p>
+                                  <div class="mb-2 card-text">{!! strlen($article->contenu) > 90 ? substr($article->contenu, 0, 90) . '...' : $article->contenu !!}</div>
                                   <a class="mt-2 mb-4 font-weight-bold text-uppercase text-2 text-decoration-none text-primary"
                                     href="{{ url('article/news/' . $article->id) }}">Lire l'article <i class="fas fa-angle-right p-relative top-1 ms-1"></i></a>
                                 </div>
