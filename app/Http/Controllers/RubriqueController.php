@@ -19,6 +19,7 @@ class RubriqueController extends Controller
         $article = null;
         $articleOthers = Article::where('id', '!=', $id)
             ->where('category_id', $categoryId)
+            ->latest()
             ->where('type', 'video')
             ->paginate(10);
 
@@ -39,6 +40,7 @@ class RubriqueController extends Controller
         $article = null;
         $articleOthers = Article::where('id', '!=', $id)
             ->where('category_id', $categoryId)
+            ->latest()
             ->where('type', 'video')
             ->paginate(10);
 
@@ -59,6 +61,7 @@ class RubriqueController extends Controller
         $article = null;
         $articleOthers = Article::where('id', '!=', $id)
             ->where('category_id', $categoryId)
+            ->latest()
             ->where('type', 'video')
             ->paginate(10);
 

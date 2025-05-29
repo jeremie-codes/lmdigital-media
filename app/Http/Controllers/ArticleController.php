@@ -20,13 +20,14 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $lastvideos = Article::where('type', 'video')->with('comments')->limit(6)->get();
-        $lastnews = Article::where('type', 'news')->limit(2)->get();
+        $lastvideos = Article::where('type', 'video')->with('comments')->latest()->limit(6)->get();
+        $lastnews = Article::where('type', 'news')->latest()->limit(2)->get();
+        $sidenews = Article::where('type', 'news')->orderBy('created_at', 'asc')->limit(2)->get();
         $annonces = Annonce::all();
         $footerCategories = Category::all();
         $configs = Config::all();
 
-        return view('home', compact('lastnews', 'lastvideos', 'footerCategories', 'annonces', 'configs'));
+        return view('home', compact('lastnews', 'lastvideos', 'footerCategories', 'annonces', 'configs', 'sidenews'));
     }
 
     public function news($cat = null)
