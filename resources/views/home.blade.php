@@ -90,7 +90,7 @@
                             </div>
                             <div class="w-full sm:flex justify-end">
                                 <div class="w-full md:w-100 sm:h-38 overflow-hidden border">
-                                    <img src="{{ asset('images/img.jpeg') }}" alt="Blog image" class="w-full h-full object-cover">
+                                    <img src="{{ asset('sotrage/' . $news->cover_image ) }}" alt="Blog image" class="w-full h-full object-cover">
                                 </div>
                                 <div class="px-3 w-full">
                                     <div class="text-sm text-gray-700 text-justify sm:pt-0 pt-4">
@@ -127,7 +127,7 @@
                     @forelse($lastvideos as $video)
                         <div class="bg-white shadow">
                             <div class="relative flex items-center justify-center">
-                                <img src="{{ asset('images/img.jpeg') }}" class="w-full">
+                                <img src="{{ asset('sotrage/' . $video->cover_image ) }}" class="w-full">
                                 <a href="{{ route('actualites.show', 1) }}" class="absolute">
                                     <i class="fa fa-play-circle text-red-300 text-3xl" aria-hidden="true"></i>
                                 </a>
@@ -169,7 +169,7 @@
             <div class="border-b pb-6 border-gray-300">
                 @forelse($lastnews as $news)
                     <div class="bg-white shadow mb-4">
-                        <img src="{{ asset('images/img.jpeg') }}" class="w-full">
+                        <img src="{{ asset('sotrage/' . $news->cover_image ) }}" class="w-full">
                         <div class="bg-blue-600 text-white px-3 py-2 text-xl font-bold">{{ \Carbon\Carbon::parse($news->scheduled_at)->format('H:i') }}
                              <span class="text-sm ml-2">{{ \Carbon\Carbon::parse($news->scheduled_at)->translatedFormat(', d F') }}</span></div>
                         <div class="p-3 font-semibold text-sm uppercase">{{ $news->title }}</div>
