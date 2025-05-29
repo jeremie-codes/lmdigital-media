@@ -8,6 +8,7 @@ use App\Models\OpinionEtDecouverte;
 use App\Models\Rubrique;
 use App\Models\Annonce;
 use App\Models\Article;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Commentaire;
@@ -26,8 +27,9 @@ class ArticleController extends Controller
         $annonces = Annonce::all();
         $footerCategories = Category::all();
         $configs = Config::all();
+        $banners = Banner::where('is_active', true)->latest()->get();
 
-        return view('home', compact('lastnews', 'lastvideos', 'footerCategories', 'annonces', 'configs', 'sidenews'));
+        return view('home', compact('lastnews', 'lastvideos', 'footerCategories', 'annonces', 'configs', 'sidenews', 'banners'));
     }
 
     public function news($cat = null)
@@ -52,6 +54,7 @@ class ArticleController extends Controller
 
         return view('shownews', compact('article'));
     }
+
 
     public function store(Request $request, $actualiteId)
     {

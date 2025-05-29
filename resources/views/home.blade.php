@@ -29,44 +29,30 @@
                     <!-- Carousel wrapper -->
                 <div class="relative h-full overflow-hidden pt-0">
                     <!-- Item 1 -->
-                    <div class="hidden duration-700 ease-in-out pt-0" data-carousel-item>
-                        <img src="{{ asset('images/ban.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover" alt="...">
-                        <div class="absolute bottom-0 left-0 w-full flex items-center justify-between">
-                            {{-- <div class="bg-blue-600 text-white px-4 py-2 text-2xl font-bold">
-                                19:05 <span class="text-sm ml-2">MONDAY - THURSDAY</span>
-                            </div>
+                    @if($banners->isNotEmpty())
 
-                            <div class="lg:block hidden bg-black bg-opacity-20 text-white px-4 py-2 text-lg font-semibold">
-                                AUTE IRURE DOLOR IN REPREHENDERIT
-                            </div> --}}
+                        <div class="hidden duration-700 ease-in-out pt-0" data-carousel-item>
+                            @foreach($banners as $banner)
+                                <img src="{{ $banner->getImageUrl() }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover" alt="...">
+                                @if($banner->title)
+                                    <div class="absolute bottom-0 left-0 w-full flex items-center justify-between">
+                                        <div class="bg-blue-600 text-white px-4 py-2 text-xl font-bold">
+                                            <span class="text-sm ml-2">{{ $banner->title }}</span>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
-                    </div>
-                    <!-- Item 2 -->
-                    <div class="hidden duration-700 ease-in-out pt-0" data-carousel-item>
-                        <img src="{{ asset('images/ban.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover" alt="...">
-                        <div class="absolute bottom-0 left-0 w-full flex items-center justify-between">
-                            {{-- <div class="bg-blue-600 text-white px-4 py-2 text-2xl font-bold">
-                                19:05 <span class="text-sm ml-2">MONDAY - THURSDAY</span>
-                            </div>
+                    @else
+                        <div class="hidden duration-700 ease-in-out pt-0" data-carousel-item>
+                            <img src="{{ asset('images/ban.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover" alt="...">
+                        </div>
+                        <!-- Item 1 -->
+                        <div class="hidden duration-700 ease-in-out pt-0" data-carousel-item>
+                            <img src="{{ asset('images/ban.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover" alt="...">
+                        </div>
+                    @endif
 
-                            <div class="lg:block hidden bg-black bg-opacity-20 text-white px-4 py-2 text-lg font-semibold">
-                                AUTE IRURE DOLOR IN REPREHENDERIT
-                            </div> --}}
-                        </div>
-                    </div>
-                    <!-- Item 2 -->
-                    <div class="hidden duration-700 ease-in-out pt-0" data-carousel-item>
-                        <img src="{{ asset('images/ban.png') }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover" alt="...">
-                        <div class="absolute bottom-0 left-0 w-full flex items-center justify-between">
-                            <div class="bg-blue-600 text-white px-4 py-2 text-2xl font-bold">
-                                19:05 <span class="text-sm ml-2">MONDAY - THURSDAY</span>
-                            </div>
-
-                            <div class="lg:block hidden bg-black bg-opacity-20 text-white px-4 py-2 text-lg font-semibold">
-                                AUTE IRURE DOLOR IN REPREHENDERIT
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
             </div>

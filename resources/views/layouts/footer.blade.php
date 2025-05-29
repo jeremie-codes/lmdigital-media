@@ -72,7 +72,7 @@
         <!-- Col 4: Coordonnées -->
         <div>
             <h4 class="text-white font-semibold mb-4">Nos coordonnées</h4>
-            <p>KINSHASA, Commune de N’GALEMBA, Quartier MBINZA DELVAUX, Avenue MUKWALA N°52</p>
+            <p>KINSHASA, Commune de NGALIEMA, Quartier MBINZA DELVAUX, Avenue MUKWALA N°52</p>
             <p class="mt-2"><i class="fa fa-phone" aria-hidden="true"></i> +243 0836 613 951 / 836 613 952</p>
             <p class="mt-2"><i class="fa fa-envelope" aria-hidden="true"></i> digitalelumiere14@gmail.com</p>
         </div>
