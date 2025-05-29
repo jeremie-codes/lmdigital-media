@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="px-3 w-full">
                                     <div class="text-sm text-gray-700 text-justify sm:pt-0 pt-4">
-                                        {!! \Support\Str::limit(strip_tags($news->contentIlluminate), 255) !!}
+                                        {!! Illuminate\Support\Str::limit(strip_tags($news->content), 255) !!}
                                     </div
                                     >
                                     <a href="{{ route('actualites.show', $news->id) }}" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block">Voir Plus</a>
