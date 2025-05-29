@@ -121,7 +121,7 @@ class ActualiteResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('category.name')->limit(50)
+                Tables\Columns\TextColumn::make('category.name')->limit(15)
                     ->sortable()
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('author.name')
