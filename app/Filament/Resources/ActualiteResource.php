@@ -121,17 +121,20 @@ class ActualiteResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('category.name')
+                Tables\Columns\TextColumn::make('category.name')->limit(50)
                     ->sortable()
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('author.name')
                     ->label('Auteur')
                     ->sortable()
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('is_published')
+                Tables\Columns\TextColumn::make('scheduled_at')
                     ->label('Diffusion')
                     ->dateTime()
                     ->sortable()
+                    ->toggleable(),
+                Tables\Columns\BooleanColumn::make('is_published')
+                    ->label('Publiéé')
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('views_count')
                     ->label('Vues')
