@@ -15,16 +15,16 @@ class RubriqueController extends Controller
     public function index($id = null)
     {
 
-        $categoryId = Category::where('name', 'politique')->value('id');
+        // $categoryId = Category::where('name', 'Politique')->value('id');
         $article = null;
         $articleOthers = Article::where('id', '!=', $id)
-            ->where('category_id', $categoryId)
+            ->where('rubrique', 'Politique')
             ->latest()
             ->where('type', 'video')
             ->paginate(10);
 
         if($id) {
-            $article = Article::where('category_id', $categoryId)
+            $article = Article::where('rubrique', 'Politique')
                 ->where('type', 'video')
                 ->where('id', $id)->first();
         }
@@ -36,16 +36,16 @@ class RubriqueController extends Controller
     public function sport($id = null)
     {
 
-        $categoryId = Category::where('name', 'sport')->value('id');
+        // $categoryId = Category::where('name', 'sport')->value('id');
         $article = null;
         $articleOthers = Article::where('id', '!=', $id)
-            ->where('category_id', $categoryId)
+            ->where('rubrique', 'Sport')
             ->latest()
             ->where('type', 'video')
             ->paginate(10);
 
         if($id) {
-            $article = Article::where('category_id', $categoryId)
+            $article = Article::where('rubrique', 'Sport')
                 ->where('type', 'video')
                 ->where('id', $id)->first();
         }
@@ -57,16 +57,16 @@ class RubriqueController extends Controller
     public function economie($id = null)
     {
 
-        $categoryId = Category::where('name', 'economie')->value('id');
+        // $categoryId = Category::where('name', 'economie')->value('id');
         $article = null;
         $articleOthers = Article::where('id', '!=', $id)
-            ->where('category_id', $categoryId)
+            ->where('rubrique', 'Economie')
             ->latest()
             ->where('type', 'video')
             ->paginate(10);
 
         if($id) {
-            $article = Article::where('category_id', $categoryId)
+            $article = Article::where('rubrique', 'Economie')
                 ->where('type', 'video')
                 ->where('id', $id)->first();
         }

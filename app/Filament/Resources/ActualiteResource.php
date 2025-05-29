@@ -119,9 +119,13 @@ class ActualiteResource extends Resource
                     ->label('Image')
                     ->getStateUsing(fn (Actualite $record) => asset('storage/' . $record->cover_image)),
                 Tables\Columns\TextColumn::make('title')
+                    ->limit(30)
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.name')->limit(15)
+                    ->sortable()
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('rubrique')->limit(15)
                     ->sortable()
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('author.name')
@@ -135,10 +139,6 @@ class ActualiteResource extends Resource
                     ->toggleable(),
                 Tables\Columns\BooleanColumn::make('is_published')
                     ->label('Publiéé')
-                    ->toggleable(),
-                Tables\Columns\TextColumn::make('views_count')
-                    ->label('Vues')
-                    ->sortable()
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Publiée le')

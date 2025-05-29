@@ -32,6 +32,7 @@ class Article extends Model
         'youtube_url',
         'file_path',
         'cover_image',
+        'rubrique',
     ];
 
      public static function boot() {

@@ -69,6 +69,7 @@ class ArticleResource extends Resource
                                     ->fileAttachmentsDisk('public')
                                     ->fileAttachmentsDirectory('articles')
                                     ->columnSpanFull(),
+
                             ]),
                     ])
                     ->columnSpan(['lg' => 2]),
@@ -107,6 +108,15 @@ class ArticleResource extends Resource
                                             ->maxLength(1000)
                                             ->columnSpanFull(),
                                     ]),
+                                 Forms\Components\Select::make('rubrique')
+                                    ->label('Rubrique')
+                                    ->options([
+                                        'politique' => 'Politique',
+                                        'sport' => 'Sport',
+                                        'economie' => 'Economie',
+                                        'autres' => 'Autres',
+                                    ])
+                                    ->required(),
                                 Forms\Components\DateTimePicker::make('scheduled_at')
                                     ->label('Date de diffusion')
                                     ->required(),
@@ -147,13 +157,13 @@ class ArticleResource extends Resource
                 Tables\Columns\TextColumn::make('author.name')
                     ->sortable()
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('is_published')
+                Tables\Columns\TextColumn::make('scheduled_at')
+                    ->label('Diffusion')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('views_count')
-                    ->label('Vues')
-                    ->sortable()
+                Tables\Columns\BooleanColumn::make('is_published')
+                    ->label('Publiéé')
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Publiée le')

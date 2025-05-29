@@ -29,6 +29,7 @@ class Actualite extends Model
         'youtube_url',
         'file_path',
         'cover_image',
+        'rubrique',
     ];
 
     public static function boot() {
@@ -64,7 +65,7 @@ class Actualite extends Model
 
     public function likes()
     {
-        return $this->hasMany(Like::class);
+        return $this->hasMany(Like::class, 'article_id');
     }
 
 }
