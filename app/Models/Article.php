@@ -65,4 +65,20 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+    public function likesCount()
+    {
+        return $this->likes()->where('is_like', true)->count();
+    }
+
+    public function dislikesCount()
+    {
+        return $this->likes()->where('is_like', false)->count();
+    }
+
+
+
 }

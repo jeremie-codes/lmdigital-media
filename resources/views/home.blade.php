@@ -93,11 +93,49 @@
                                     <img src="{{ asset('storage/' . $news->cover_image ) }}" alt="Blog image" class="w-full h-full object-cover">
                                 </div>
                                 <div class="px-3 w-full">
-                                    <div class="tex text-gray-700 text-justify sm:pt-0 pt-4">
-                                        {!! Illuminate\Support\Str::limit(strip_tags($news->content), 300) !!}
-                                    </div
-                                    >
-                                    <a href="{{ route('actualites.show', $news->id) }}" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block">Voir Plus</a>
+                                    <div class="tex text-gray-700 text-justify sm:pt-0 pt-4" style="line-height: 1;">
+                                        {!! Illuminate\Support\Str::limit(strip_tags($news->content), 200) !!}
+                                        <a href="{{ route('actualites.show', $news->id) }}" class="text-blue-600 text-sm px-2 font-semibold hover:underline mt-2 inline-block">Voir Plus</a>
+                                    </div>
+
+                                    <div class="flex items-center space-x-4">
+                                        <button type="button" id="like-count{{ $news->id }}" onclick="sendLike({{ $news->id }}, true)" class="text-green-500 cursor-pointer">
+                                            <i class="fa fa-thumbs-up" aria-hidden="true"></i> : {{ $news->likesCount() }}
+                                        </button>
+                                        <button type="button" id="dislike-count{{ $news->id }}" onclick="sendLike({{ $news->id }}, false)" class="text-red-400 cursor-pointer">
+                                            <i class="fa fa-thumbs-down" aria-hidden="true"></i> : {{ $news->dislikesCount() }}</
+                                        </button>
+                                    </div>
+
+                                    <div class="mt-1 pb-3">
+                                        <p class="text-sm font-semibold mb-2">Partager cette publication :</p>
+                                        <div class="flex space-x-4">
+                                            <!-- Facebook -->
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('actualites.show', $news->id)) }}" target="_blank"
+                                            class="text-blue-600 hover:text-blue-800 text-sm">
+                                                <i class="fab fa-facebook-square"></i>
+                                            </a>
+
+                                            <!-- Twitter / X -->
+                                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('actualites.show', $news->id)) }}" target="_blank"
+                                            class="text-blue-400 hover:text-blue-600 text-sm">
+                                                <i class="fab fa-x-twitter"></i>
+                                            </a>
+
+                                            <!-- WhatsApp -->
+                                            <a href="https://api.whatsapp.com/send?text={{ urlencode(route('actualites.show', $news->id)) }}" target="_blank"
+                                            class="text-green-500 hover:text-green-700 text-sm">
+                                                <i class="fab fa-whatsapp"></i>
+                                            </a>
+
+                                            <!-- LinkedIn -->
+                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('actualites.show', $news->id)) }}" target="_blank"
+                                            class="text-blue-700 hover:text-blue-900 text-sm">
+                                                <i class="fab fa-linkedin"></i>
+                                            </a>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -112,6 +150,39 @@
                             </a>
                         </div>
                     @endif
+
+                    <script>
+                        const articleId = {{ $news->id }};
+                        const localKey = `liked-${articleId}`;
+
+                        function formatNumber(num) {
+                            if (num >= 1_000_000) return (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+                            if (num >= 1_000) return (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'K';
+                            return num;
+                        }
+
+                        function sendLike(id, isLike) {
+                            // if (localStorage.getItem(localKey)) {
+                            //     alert("Vous avez déjà voté.");
+                            //     return;
+                            // }
+
+                            fetch(`/like/${id}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                },
+                                body: JSON.stringify({ is_like: isLike })
+                            })
+                            .then(res => res.json())
+                            .then(data => {
+                                document.getElementById('like-count{{ $news->id }}').innerHTML = `<i class="fa fa-thumbs-up" aria-hidden="true"></i> : ${formatNumber(data.likes)}`;
+                                document.getElementById('dislike-count{{ $news->id }}').innerHTML = `<i class="fa fa-thumbs-down" aria-hidden="true"></i> : ${formatNumber(data.dislikes)}`;
+                                localStorage.setItem(localKey, '{{ $news->id }}');
+                            });
+                        }
+                    </script>
                 @empty
                     <div class="text-blue-600 text-sm hover:underline mt-2 inline-block">
                         Aucune actualité disponible pour le moment.
@@ -132,19 +203,102 @@
                                     <i class="fa fa-play-circle text-red-300 text-3xl" aria-hidden="true"></i>
                                 </a>
                             </div>
-                            <div class="bg-blue-600 text-white px-3 py-2 text-md font-bold">
-                                {{ \Carbon\Carbon::parse($video->scheduled_at)->format('H:i') }}
-                                <span class="text-sm ml-2">{{ \Carbon\Carbon::parse($video->scheduled_at)->translatedFormat('l d F Y') }}</span>
+                            <div class="bg-blue-600 text-white px-3 py-2 text-md font-bold flex justify-between items-center">
+                                <div class="flex jusify-between">
+                                    <i class="fa fa-clock mr-1"></i>
+                                    {{ \Carbon\Carbon::parse($video->scheduled_at)->format('H:i') }}
+                                    <span class="text-sm ml-2">{{ \Carbon\Carbon::parse($video->scheduled_at)->translatedFormat(', d F ') }}</span>
+                                </div>
+
+                                <div class="flex items-center space-x-4">
+                                    <button type="button" id="like-count{{ $video->id }}" onclick="sendLike2({{ $video->id }}, true)" class="text-green-500 cursor-pointer">
+                                        <i class="fa fa-thumbs-up" aria-hidden="true"></i> :  {{ $video->likesCount() }}
+                                    </button>
+                                    <button type="button" id="dislike-count{{ $video->id }}" onclick="sendLike2({{ $video->id }}, false)" class="text-red-400 cursor-pointer">
+                                        <i class="fa fa-thumbs-down" aria-hidden="true"></i> :  {{ $video->dislikesCount() }}
+                                    </button>
+                                </div>
                             </div>
                             <div class="p-3 font-semibold text-sm uppercase">
                                 <a href="#">
                                     {{ $video->title }}
                                 </a>
                             </div>
-                            <div class="p-3 text-gray-500 text-m text-justify">
-                                {!! Illuminate\Support\Str::limit(strip_tags($video->content), 150) !!}
+                            <div class="px-3 text-gray-500 text- text-justify">
+                                {!! Illuminate\Support\Str::limit(strip_tags($video->content), 65) !!}
+                            </div>
+                            <div class="pt-1 px-3 mt-1 pb-3 border-t border-gray-300">
+                                <p class="text-sm font-semibold mb-2">Partager cette publication :</p>
+                                <div class="flex space-x-4">
+                                    <!-- Facebook -->
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('actualites.show', $video->id)) }}" target="_blank"
+                                    class="text-blue-600 hover:text-blue-800 text-sm">
+                                        <i class="fab fa-facebook-square"></i>
+                                    </a>
+
+                                    <!-- Twitter / X -->
+                                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('actualites.show', $video->id)) }}" target="_blank"
+                                    class="text-blue-400 hover:text-blue-600 text-sm">
+                                        <i class="fab fa-x-twitter"></i>
+                                    </a>
+
+                                    <!-- WhatsApp -->
+                                    <a href="https://api.whatsapp.com/send?text={{ urlencode(route('actualites.show', $video->id)) }}" target="_blank"
+                                    class="text-green-500 hover:text-green-700 text-sm">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+
+                                    <!-- LinkedIn -->
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(route('actualites.show', $video->id)) }}" target="_blank"
+                                    class="text-blue-700 hover:text-blue-900 text-sm">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+
+                                </div>
                             </div>
                         </div>
+
+                        <script>
+                            const articlesId = {{ $video->id }};
+                            const localKeys = `liked-${articlesId}`;
+
+                            // Fonction pour formater le nombre
+                            function formatNumber(num) {
+                                if (num >= 1_000_000) return (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+                                if (num >= 1_000) return (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'K';
+                                return num;
+                            }
+
+                            function sendLike2(id, isLike) {
+                                // if (localStorage.getItem(localKeys)) {
+                                //     alert("Vous avez déjà voté.");
+                                //     return;
+                                // }
+
+                                fetch(`/like/${id}`, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                    },
+                                    body: JSON.stringify({ is_like: isLike })
+                                })
+                                .then(res => res.json())
+                                .then(data => {
+                                    console.log(data);
+
+                                    // Utilise le formateur ici
+                                    document.getElementById('like-count{{ $video->id }}').innerHTML =
+                                        `<i class="fa fa-thumbs-up" aria-hidden="true"></i> : ${formatNumber(data.likes)}`;
+
+                                    document.getElementById('dislike-count{{ $video->id }}').innerHTML =
+                                        `<i class="fa fa-thumbs-down" aria-hidden="true"></i> : ${formatNumber(data.dislikes)}`;
+
+                                    localStorage.setItem(localKeys, '{{ $video->id }}'); // Empêche de revoter
+                                });
+                            }
+                        </script>
+
                     @empty
                          <div class="text-blue-600 text-sm hover:underline mt-2 inline-block">
                             Aucune vidéo disponible pour le moment.
@@ -235,3 +389,4 @@
         </div>
     </div>
 @endsection
+

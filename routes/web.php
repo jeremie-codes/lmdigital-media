@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\RubriqueController;
 use App\Http\Controllers\ServiceController;
 
@@ -17,7 +18,7 @@ Route::get('/economies', [RubriqueController::class, 'economie'])->name('eonomie
 Route::get('/newsletter/subscribe', [RubriqueController::class, 'index'])->name('newsletter.subscribe');
 Route::get('/article/news/{id}', [ArticleController::class, 'show'])->name('actualites.show');
 Route::post('/actualites/{id}/commentaires', [ArticleController::class, 'store'])->name('commentaires.store');
-
+Route::post('/like/{id}', [LikeController::class, 'toggle']);
 Route::get('/about', function () {
   return view('about');
 });
