@@ -21,7 +21,7 @@
 </div>
 
 <style>
-    @if ($breakingNews->isEmpty())
+    @if ($breakingNews->isEmpty() || $breakingNews->count() == 1)
         @keyframes marquee {
             0%   { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
