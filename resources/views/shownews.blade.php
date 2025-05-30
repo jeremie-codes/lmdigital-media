@@ -50,7 +50,7 @@
 
             </div>
 
-            <div class="tex text-gray-700 text-justify sm:pt-0 pt-4 mt-4" style="line-height: 1;">
+            <div class="tex text-gray-700 text-left sm:pt-0 pt-4 mt-4" style="line-height: 1;">
                 {!! $article->content !!} <br>
             </div>
         </section>
