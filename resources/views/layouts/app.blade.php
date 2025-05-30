@@ -32,6 +32,31 @@
             @include('layouts.navigation')
 
             <!-- Page Content -->
+            @if(session('newsletter_success'))
+                <div class="bg-green-500/20 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 text-center">
+                    {{ session('newsletter_success') }}
+                </div>
+            @endif
+
+            @if(session('newsletter_error'))
+                <div class="bg-red-500/20 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-center">
+                    {{ session('newsletter_success') }}
+                </div>
+            @endif
+
+            @if(session('success'))
+                <div class="bg-green-500/20 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 text-center">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="bg-red-500/20 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-center">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+
             <main>
                 @yield('content')
             </main>
