@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Actualite;
 use App\Models\Article;
+use App\Models\BreakingNews;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -29,7 +30,9 @@ class RubriqueController extends Controller
                 ->where('id', $id)->first();
         }
 
-        return view('politiques', compact('article', 'articleOthers'));
+        $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
+
+        return view('politiques', compact('article', 'articleOthers', 'breakingNews'));
 
     }
 
@@ -50,7 +53,8 @@ class RubriqueController extends Controller
                 ->where('id', $id)->first();
         }
 
-        return view('sports', compact('article', 'articleOthers'));
+        $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
+        return view('sports', compact('article', 'articleOthers', 'breakingNews'));
 
     }
 
@@ -71,7 +75,8 @@ class RubriqueController extends Controller
                 ->where('id', $id)->first();
         }
 
-        return view('economies', compact('article', 'articleOthers'));
+        $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
+        return view('economies', compact('article', 'articleOthers', 'breakingNews'));
 
     }
 

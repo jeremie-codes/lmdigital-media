@@ -9,6 +9,7 @@ use App\Models\Rubrique;
 use App\Models\Annonce;
 use App\Models\Article;
 use App\Models\Banner;
+use App\Models\BreakingNews;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Commentaire;
@@ -28,8 +29,9 @@ class ArticleController extends Controller
         $footerCategories = Category::all();
         $configs = Config::all();
         $banners = Banner::where('is_active', true)->latest()->get();
+        $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
 
-        return view('home', compact('lastnews', 'lastvideos', 'footerCategories', 'annonces', 'configs', 'sidenews', 'banners'));
+        return view('home', compact('lastnews', 'lastvideos', 'footerCategories', 'annonces', 'configs', 'sidenews', 'banners', 'breakingNews'));
     }
 
     public function news($cat = null)
@@ -44,15 +46,18 @@ class ArticleController extends Controller
             $news = Article::where('type', 'news')->where('category_id', $catId)->get();
         }
 
-        return view('news', compact('news', 'categories'));
+        $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
+
+        return view('news', compact('news', 'categories', 'breakingNews'));
     }
 
     public function show($id)
     {
 
         $article = Actualite::with('comments')->findOrFail($id);
+        $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
 
-        return view('shownews', compact('article'));
+        return view('shownews', compact('article', 'breakingNews'));
     }
 
 
