@@ -79,7 +79,7 @@
                                     <img src="{{ asset('storage/' . $news->cover_image ) }}" alt="Blog image" class="w-full h-full object-cover">
                                 </div>
                                 <div class="px-3 w-full">
-                                    <div class="tex text-gray-700 text-justify sm:pt-0 pt-4" style="line-height: 1;">
+                                    <div class="tex text-gray-700 text-left sm:pt-0 pt-4" style="line-height: 1;">
                                         {!! Illuminate\Support\Str::limit(strip_tags($news->content), 200) !!} <br>
                                         <a href="{{ route('actualites.show', $news->id) }}" class="text-blue-600 text-sm p-4 font-semibold hover:underline mt-2 inline-block">Voir Plus</a>
                                     </div>
@@ -210,7 +210,7 @@
                                     {{ $video->title }}
                                 </a>
                             </div>
-                            <div class="px-3 text-gray-500 text- text-justify">
+                            <div class="px-3 text-gray-500 text- text-left">
                                 {!! Illuminate\Support\Str::limit(strip_tags($video->content), 65) !!}
                             </div>
                             <div class="pt-1 px-3 mt-1 pb-3 border-t border-gray-300">
