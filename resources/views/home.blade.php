@@ -81,7 +81,7 @@
                                 <div class="px-3 w-full">
                                     <div class="tex text-gray-700 text-left sm:pt-0 pt-4" style="line-height: 1;">
                                         {!! Illuminate\Support\Str::limit(strip_tags($news->content), 200) !!}
-                                        <a href="{{ route('actualites.show', $news->id) }}" class="text-blue-600 text-sm p-4 font-semibold hover:underline mt-2 inline-block">Voir Plus</a>
+                                        <a href="{{ route('actualites.show', $news->id) }}" class="text-blue-600 text-sm px-4 font-semibold hover:underline inline-block">Voir Plus</a>
                                     </div>
 
                                     <div class="flex items-center space-x-4">
