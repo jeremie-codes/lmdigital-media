@@ -12,6 +12,12 @@
                 </div>
             @endif
 
+            @if(session('newsletter_error'))
+                <div class="bg-red-500/20 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-center">
+                    {{ session('newsletter_success') }}
+                </div>
+            @endif
+
             <form method="POST" action="{{ route('newsletter.subscribe') }}" class="flex flex-col sm:flex-row gap-3">
                 @csrf
                 <input type="email" name="email" required

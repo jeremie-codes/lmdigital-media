@@ -15,7 +15,7 @@
         @endif
 
     @empty
-
+        <span class="mr-8">Contactez-nous dans notre page /contact pour plus d'information !</span>
     @endforelse
   </div>
 </div>
