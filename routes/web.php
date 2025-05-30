@@ -16,7 +16,7 @@ Route::get('/politiques', [RubriqueController::class, 'index'])->name('politic')
 Route::get('/politiques/{id}', [RubriqueController::class, 'index'])->name('politic.show');
 Route::get('/sports', [RubriqueController::class, 'sport'])->name('sports');
 Route::get('/economies', [RubriqueController::class, 'economie'])->name('eonomie');
-Route::get('/newsletter/subscribe', [NewsletterController::class, 'store'])->name('newsletter.subscribe');
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'store'])->name('newsletter.subscribe');
 Route::get('/article/news/{id}', [ArticleController::class, 'show'])->name('actualites.show');
 Route::post('/actualites/{id}/commentaires', [ArticleController::class, 'store'])->name('commentaires.store');
 Route::post('/like/{id}', [LikeController::class, 'toggle']);
