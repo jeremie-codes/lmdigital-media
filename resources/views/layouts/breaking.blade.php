@@ -1,5 +1,5 @@
-<div class="bg-white text-blue- py-2 overflow-hidden relative">
-  <div class="absolute left-0 top-0 bottom-0 flex items-center bg-yellow-400 z-[1] px-4 font-bold uppercase {{ $breakingNews->isEmpty() ? 'h-8' : '' }}">
+<div class="bg-white text-blue- py-2 overflow-hidden relative {{ $breakingNews->isEmpty() ? 'h-8' : '' }}">
+  <div class="absolute left-0 top-0 bottom-0 flex items-center bg-yellow-400 z-[1] px-4 font-bold uppercase">
     Breaking News:
   </div>
   <div class="pl-40 animate-marquee whitespace-nowrap">
