@@ -23,7 +23,7 @@ class ArticleController extends Controller
     public function index()
     {
         $lastvideos = Article::where('type', 'video')->with('comments')->latest()->limit(6)->get();
-        $lastnews = Article::where('type', 'news')->latest()->limit(2)->get();
+        $lastnews = Article::where('type', 'news')->latest()->limit(3)->get();
         $sidenews = Article::where('type', 'news')->orderBy('created_at', 'asc')->limit(2)->get();
         $annonces = Annonce::all();
         $footerCategories = Category::all();

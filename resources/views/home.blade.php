@@ -59,7 +59,7 @@
 
             {{-- ACTUALITES SHOWS --}}
             <div class="px-6 py-4 mt-2">
-                <h2 class="text-xl font-bold uppercase mb-4">Actualités</h2>
+                <h2 class="text-xl font-bold uppercase mb-4">Actualités Récentes</h2>
                      <!-- Blog Item -->
                 @forelse($lastnews as $news)
                     <div class="flex flex-col md:flex-row gap-4 border-b border-gray-300 pb-6 pt-4">
