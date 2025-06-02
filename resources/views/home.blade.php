@@ -75,7 +75,7 @@
                                 <span><i class="fa fa-message" aria-hidden="true"></i> {{ $news->comments->count() }}</span>
                             </div>
                             <div class="w-full sm:flex justify-end">
-                                <div class="w-full md:w-100 sm:h-38 overflow-hidden border">
+                                <div class="w-full md:w-100 sm:h-38 overflow-hidden">
                                     <img src="{{ asset('storage/' . $news->cover_image ) }}" alt="Blog image" class="w-full h-full object-cover">
                                 </div>
                                 <div class="px-3 w-full">
