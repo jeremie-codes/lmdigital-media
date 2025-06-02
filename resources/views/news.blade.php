@@ -26,13 +26,13 @@
                         </div>
                         <div class="w-full sm:flex justify-end">
                             <div class="w-full md:w-100 sm:h-38 overflow-hidden border">
-                                <img src="{{ asset('images/img.jpeg') }}" alt="Blog image" class="w-full h-full object-cover">
+                                <img src="{{ asset('storage/' . $new->cover_image) }}" alt="Blog image" class="w-full h-full object-cover">
                             </div>
                             <div class="px-3 w-full">
                                 <div class="text-sm text-gray-700 text-justify sm:pt-0 pt-4">
                                     {{ Illuminate\Support\Str::limit(strip_tags($new->content), 205) }}
                                 </div>
-                                <a href="{{ route('actualites.show', 1) }}" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block">Voir Plus</a>
+                                <a href="{{ route('actualites.show', $new->id) }}" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block">Voir Plus</a>
                             </div>
                         </div>
                     </div>
