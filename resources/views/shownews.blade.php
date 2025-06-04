@@ -13,7 +13,7 @@
                     <img
                         src="{{ asset('storage/' . $article->cover_image) }}"
                         alt="Couverture de la vidéo"
-                        class="w-full h-92 object-cover">
+                        class="w-full h-auto object-cover">
 
                     <!-- Boutons de partage -->
                     <div class="mt-4">
