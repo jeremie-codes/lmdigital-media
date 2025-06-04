@@ -308,13 +308,15 @@
         <div class="space-y-4 md:mt-0 mt-4 side">
             <div class="border-b pb-6 border-gray-300">
                 @forelse($sidenews as $news)
-                    <a href="{{ route('actualites.show', $news->id) }}" class="bg-white shadow mb-4">
-                        <div class="h-52 relative overflow-hidden">
-                            <img src="{{ asset('storage/' . $news->cover_image ) }}" class="min-w-full min-h-full object-cover" alt="News image">
+                    <a href="{{ route('actualites.show', $news->id) }}" class="mb-4">
+                        <div class="bg-white shadow">
+                            <div class="h-52 relative overflow-hidden">
+                                <img src="{{ asset('storage/' . $news->cover_image ) }}" class="min-w-full min-h-full object-cover" alt="News image">
+                            </div>
+                            <div class="bg-blue-600 text-white px-3 py-2 text-xl font-bold">{{ \Carbon\Carbon::parse($news->scheduled_at)->format('H:i') }}
+                                <span class="text-sm ml-2">{{ \Carbon\Carbon::parse($news->scheduled_at)->translatedFormat(', d F') }}</span></div>
+                            <div class="p-3 font-semibold text-sm uppercase">{{ $news->title }}</div>
                         </div>
-                        <div class="bg-blue-600 text-white px-3 py-2 text-xl font-bold">{{ \Carbon\Carbon::parse($news->scheduled_at)->format('H:i') }}
-                             <span class="text-sm ml-2">{{ \Carbon\Carbon::parse($news->scheduled_at)->translatedFormat(', d F') }}</span></div>
-                        <div class="p-3 font-semibold text-sm uppercase">{{ $news->title }}</div>
                     </a>
                 @empty
                  <div class="bg-white shadow mb-4">
