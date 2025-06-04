@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Mail\NewArticleNotification;
+use Illuminate\Support\Facades\Mail;
 
 class Actualite extends Model
 {
@@ -38,6 +40,23 @@ class Actualite extends Model
         // Automatically set the author_id to the authenticated user
         static::creating(function ($model) {
             $model->type = 'news';
+        });
+    }
+
+      public static function booted() {
+        // parent::booted();
+
+        // Automatically set the author_id to the authenticated user
+        static::created(function ($model) {
+
+                    // Récupérer tous les abonnés à la newsletter
+            $subscribers = Newsletter::pluck('email');
+
+            // Envoyer un mail à chacun
+            foreach ($subscribers as $email) {
+                Mail::to($email)->queue(new NewArticleNotification($model));
+            }
+
         });
     }
 

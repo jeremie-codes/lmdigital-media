@@ -179,7 +179,7 @@
 
             {{-- VIDEOS SHOWS --}}
             <div class="px-6 py-4">
-                <h2 class="text-xl font-bold uppercase mb-4">Programmes Vidéos Publiées</h2>
+                <h2 class="text-xl font-bold uppercase mb-4">Vidéos Publiées Récemment</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     @forelse($lastvideos as $video)
                         <div class="bg-white shadow">
@@ -331,7 +331,7 @@
                 <h2 class="text-xl font-bold uppercase mb-2">ANNONCES & PUBLICITÉS</h2>
 
                 <p class="text-gray-700 text-sm">
-                    <span class="font-bold text-gray-900">Contactez-nous au:</span> (243) 827 289 636, Pour vos publicités !
+                    <span class="font-bold text-gray-900">Contactez-nous au:</span> (243) 819 186 880 publicités !
                 </p>
 
                 <div id="default-carousel" class="relative w-full h-full" data-carousel="slide" interval="50000">

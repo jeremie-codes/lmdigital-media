@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Mail\NewArticleNotification;
+use Illuminate\Support\Facades\Mail;
 
 class Article extends Model
 {
@@ -41,6 +43,23 @@ class Article extends Model
         // Automatically set the author_id to the authenticated user
         static::creating(function ($model) {
             $model->type = 'video';
+        });
+    }
+
+     public static function booted() {
+        // parent::booted();
+
+        // Automatically set the author_id to the authenticated user
+        static::created(function ($model) {
+
+                    // Récupérer tous les abonnés à la newsletter
+            $subscribers = Newsletter::pluck('email');
+
+            // Envoyer un mail à chacun
+            foreach ($subscribers as $email) {
+                Mail::to($email)->queue(new NewArticleNotification($model));
+            }
+
         });
     }
 
