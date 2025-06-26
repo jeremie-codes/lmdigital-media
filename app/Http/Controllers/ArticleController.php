@@ -15,7 +15,6 @@ use App\Models\Comment;
 use App\Models\Parametre;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
-use Illuminate\Support\Facades\Config;
 
 class ArticleController extends Controller
 {
@@ -27,12 +26,12 @@ class ArticleController extends Controller
         $sidenews = Article::where('type', 'news')->orderBy('created_at', 'asc')->limit(2)->get();
         $annonces = Annonce::all();
         $footerCategories = Category::all();
-        $configs = Config::all();
+        $configs = Parametre::all();
         $banners = Banner::where('is_active', true)->latest()->get();
         $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
-        $pubnumber = Parametre::where('type', 'numeropub')->first()->data;
+        $pubnumber = Parametre::where('type', 'numeropub')->first()->data ?? '';
 
-        return view('home', compact('lastnews', 'lastvideos', 'footerCategories', 'annonces', 'configs', 'sidenews', 'banners', 'breakingNews'));
+        return view('home', compact('pubnumber', 'lastnews', 'lastvideos', 'footerCategories', 'annonces', 'configs', 'sidenews', 'banners', 'breakingNews'));
     }
 
     public function news($cat = null)

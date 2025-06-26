@@ -333,7 +333,7 @@
                 <h2 class="text-xl font-bold uppercase mb-2">ANNONCES & PUBLICITÉS</h2>
 
                 <p class="text-gray-700 text-sm">
-                    <span class="font-bold text-gray-900">Contactez-nous au:</span> (243) 819 186 880 publicités !
+                    <span class="font-bold text-gray-900">Contactez-nous au:</span> {{ $pubnumber ?? 0 }} pour vos publicités !
                 </p>
 
                 <div id="default-carousel" class="relative w-full h-full" data-carousel="slide" interval="50000">
@@ -341,6 +341,9 @@
                     <div class="relative h-screen overflow-hidden rounded-lg">
                         <!-- Item 1 -->
                         @foreach ($annonces as $annonce)
+                            <div class="mt-2">
+                                {!! $annonce->description ?? '' !!}
+                            </div>
                             <div class="hiddn duration-700 ease-in-out" data-carousel-item>
                                 <img src="{{ asset('storage/' . $annonce->image) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                             </div>
