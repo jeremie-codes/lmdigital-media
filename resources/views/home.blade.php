@@ -341,7 +341,7 @@
                     <div class="relative h-screen overflow-hidden rounded-lg">
                         <!-- Item 1 -->
                         @foreach ($annonces as $annonce)
-                            <div class="mt-2">
+                            <div class="mt-2 duration-700 ease-in-out" data-carousel-item>
                                 {!! $annonce->contenu ?? '' !!}
                             </div>
                             <div class="hiddn duration-700 ease-in-out" data-carousel-item>
