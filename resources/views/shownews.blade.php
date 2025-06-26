@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section('meta')
+    <meta property="og:title" content="{{ $article->title }}" />
+    <meta property="og:description" content="{{ \Illuminate\Support\Str::limit(strip_tags($article->content), 150) }}" />
+    <meta property="og:image" content="{{ asset('storage/' . $article->cover_image) }}" />
+    <meta property="og:url" content="{{ request()->fullUrl() }}" />
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary_large_image">
+@endsection
+
 @section('content')
 
 <main class="max-w-7xl mx-auto px-4 py-6">
