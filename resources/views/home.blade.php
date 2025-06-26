@@ -342,7 +342,7 @@
                         <!-- Item 1 -->
                         @foreach ($annonces as $annonce)
                             <div class="mt-2">
-                                {!! $annonce->description ?? '' !!}
+                                {!! $annonce->contenu ?? '' !!}
                             </div>
                             <div class="hiddn duration-700 ease-in-out" data-carousel-item>
                                 <img src="{{ asset('storage/' . $annonce->image) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
