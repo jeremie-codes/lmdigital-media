@@ -56,7 +56,7 @@
         <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-language">
             <ul class="flex flex-col font-medium p-4 lg:p-0 mt-4  rounded-lg  lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent bg-gray-800 ">
                 <li>
-                    <a href="{{ url('/') }}" class="block py-2 text-sm font-semibold px-3 text-white bg-blue-700 rounded-sm lg:bg-transparent lg:border-b-4 lg:p-0" aria-current="page">ACCUEIL</a>
+                    <a href="{{ url('/') }}" class="block py-2 text-sm font-semibold px-3 text-white bg-blue-700 rounded-sm lg:bg-transparent hover:lg:border-b-4 lg:p-0" aria-current="page">ACCUEIL</a>
                 </li>
                 <li>
                     <a href="{{ url('/about') }}" class="block text-sm font-semibold py-2 px-3 lg:p-0 text-gray-900 rounded-sm hover:lg:border-b-4 hover:bg-blue-100 hover:text-slate-700 lg:hover:bg-transparent lg:hover:text-gray-300 text-white">À PROPOS</a>

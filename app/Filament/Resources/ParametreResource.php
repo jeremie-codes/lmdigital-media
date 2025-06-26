@@ -41,6 +41,7 @@ class ParametreResource extends Resource
                                 'twitter' => 'Twitter',
                                 'youtube' => 'YouTube',
                                 'linkedin' => 'LinkedIn',
+                                'numeropub' => 'numéro de pub',
                             ])
                             ->placeholder('Choisir le type')
                             ->required(),

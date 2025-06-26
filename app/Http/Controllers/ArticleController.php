@@ -12,7 +12,7 @@ use App\Models\Banner;
 use App\Models\BreakingNews;
 use App\Models\Category;
 use App\Models\Comment;
-use App\Models\Commentaire;
+use App\Models\Parametre;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Config;
@@ -30,6 +30,7 @@ class ArticleController extends Controller
         $configs = Config::all();
         $banners = Banner::where('is_active', true)->latest()->get();
         $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
+        $pubnumber = Parametre::where('type', 'numeropub')->first()->data;
 
         return view('home', compact('lastnews', 'lastvideos', 'footerCategories', 'annonces', 'configs', 'sidenews', 'banners', 'breakingNews'));
     }

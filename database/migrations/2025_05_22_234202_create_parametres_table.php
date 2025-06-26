@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('configs', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ['phone', 'email', 'facebook', 'address', 'instagram', 'twitter', 'whatsapp', 'youtube', 'linkedin']);
+            $table->enum('type', ['phone', 'email', 'facebook', 'address', 'instagram', 'twitter', 'whatsapp', 'youtube', 'linkedin', 'numeropub']);
             $table->string('data');
             $table->timestamps();
         });
