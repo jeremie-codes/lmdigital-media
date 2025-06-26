@@ -4,12 +4,6 @@
 @section('content')
 <div class="text-black">
 
-    @if(session('success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
-            {{ session('success') }} !
-        </div>
-    @endif
-
     <!-- Content Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 px-8 py-12">
         <!-- About -->
@@ -39,29 +33,29 @@
 
 
         {{-- <form method="POST" action="{{ route('contact.send') }}" class="space-y-6 bg-white p-6 rounded shadow"> --}}
-        <form method="POST" action="{{ url('') }}" class="space-y-3 bg-white p-6 rounded shadow">
+        <form method="POST" action="{{ url('/about') }}" class="space-y-3 bg-white p-6 rounded shadow">
             @csrf
             <div>
                 <label class="block text-sm font-medium ">Nom</label>
-                <input type="text" name="name" required
+                <input type="text" name="guest_name" required
                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-500">
             </div>
 
             <div>
                 <label class="block text-sm font-medium ">Email</label>
-                <input type="email" name="email" required
+                <input type="email" name="guest_email" required
                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-500">
             </div>
 
             <div>
                 <label class="block text-sm font-medium ">Sujet</label>
-                <input type="text" name="subject" required
+                <input type="text" name="subjet" required
                        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-500">
             </div>
 
             <div>
                 <label class="block text-sm font-medium ">Message</label>
-                <textarea name="message" rows="3" required
+                <textarea name="content" rows="3" required
                           class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
             </div>
 

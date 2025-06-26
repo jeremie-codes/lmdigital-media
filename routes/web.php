@@ -6,6 +6,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\RubriqueController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\MessagesController;
 
 Route::get('/', [ArticleController::class, 'index'])->name('home');
 Route::get('/news', [ArticleController::class, 'news'])->name('articles.index');
@@ -21,6 +22,8 @@ Route::get('/article/news/{id}', [ArticleController::class, 'show'])->name('actu
 Route::post('/actualites/{id}/commentaires', [ArticleController::class, 'store'])->name('commentaires.store');
 Route::post('/like/{id}', [LikeController::class, 'toggle']);
 Route::get('/about', function () {
-  return view('about');
+    $breakingNews = \App\Models\BreakingNews::where('is_active', true)->latest()->get();
+    return view('about', compact('breakingNews'));
 });
+Route::post('/about', [MessagesController::class, 'store'])->name('messages.store');
 
